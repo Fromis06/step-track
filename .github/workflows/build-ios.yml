@@ -52,6 +52,20 @@ jobs:
             -derivedDataPath build/device \
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
             CURRENT_PROJECT_VERSION="$GITHUB_RUN_NUMBER" | tee build.log
+      - name: Export interface screenshots
+        if: matrix.flavor == 'health' && always()
+        run: |
+          if [ -d build/Tests.xcresult ]; then
+            xcrun xcresulttool export attachments --path build/Tests.xcresult --output-path build/screenshots
+          fi
+      - name: Upload interface screenshots
+        if: matrix.flavor == 'health' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: interface-screenshots
+          path: build/screenshots
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Package IPA for re-signing
         env:
           FLAVOR: ${{ matrix.flavor }}

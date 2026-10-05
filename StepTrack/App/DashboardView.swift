@@ -1,6 +1,7 @@
 import SwiftUI
 import Charts
 import Combine
+import WidgetKit
 
 enum TrackStyle {
     static let green = Color(red: 0.17, green: 0.55, blue: 0.36)
@@ -11,6 +12,7 @@ struct DashboardView: View {
     @EnvironmentObject private var activity: ActivityStore
     @State private var showSettings = false
     @State private var period = 7
+    @AppStorage("appLanguage", store: ActivityStorage.defaults) private var language = "vi"
     private let pulse = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
 
     private var records: [ActivityDay] { Array(activity.snapshot.days.suffix(period)) }
@@ -22,7 +24,7 @@ struct DashboardView: View {
                     header
                     if !activity.enabled { connectionCard }
                     if let message = activity.message {
-                        Label(message, systemImage: "exclamationmark.circle")
+                        Label(Copy.text(message), systemImage: "exclamationmark.circle")
                             .font(.subheadline).foregroundStyle(.orange)
                             .frame(maxWidth: .infinity, alignment: .leading).card()
                     }
@@ -37,6 +39,7 @@ struct DashboardView: View {
             .toolbar(.hidden, for: .navigationBar)
             .refreshable { await activity.refresh() }
             .sheet(isPresented: $showSettings) { SettingsScreen() }
+            .environment(\.locale, Locale(identifier: language))
             .onReceive(pulse) { _ in Task { await activity.refresh() } }
             .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in
                 Task { await activity.refresh() }
@@ -50,9 +53,9 @@ struct DashboardView: View {
     private var header: some View {
         HStack(alignment: .center) {
             VStack(alignment: .leading, spacing: 5) {
-                Text(Date.now.formatted(.dateTime.weekday(.wide).day().month(.wide)))
+                Text(Date.now.formatted(.dateTime.weekday(.wide).day().month(.wide).locale(Copy.locale)))
                     .font(.subheadline).foregroundStyle(.secondary)
-                Text("Hôm nay")
+                Text(Copy.text("Today"))
                     .font(.title2.weight(.bold)).tracking(-0.7)
             }
             Spacer(minLength: 10)
@@ -61,22 +64,23 @@ struct DashboardView: View {
                     .font(.title3).frame(width: 46, height: 46)
                     .background(Color(.secondarySystemGroupedBackground), in: Circle())
             }
-            .accessibilityLabel("Cài đặt và mục tiêu")
+            .accessibilityLabel(Copy.text("Settings and goal"))
+            .accessibilityIdentifier("settingsButton")
         }
     }
 
     private var connectionCard: some View {
         VStack(alignment: .leading, spacing: 14) {
-            Label(ActivityStore.motionOnly ? "Bước chân từ iPhone" : "Kết nối Sức khỏe", systemImage: "heart.fill")
+            Label(ActivityStore.motionOnly ? Copy.text("iPhone steps") : Copy.text("Connect to Health"), systemImage: "heart.fill")
                 .font(.headline)
             Text(ActivityStore.motionOnly
-                 ? "Đọc bước chân từ cảm biến iPhone."
-                 : "Đọc số bước và quãng đường của bạn.")
+                 ? Copy.text("Read steps from your iPhone.")
+                 : Copy.text("Read your steps and distance."))
                 .font(.subheadline).foregroundStyle(.secondary)
             Button { Task { await activity.connect() } } label: {
                 HStack {
                     if activity.loading { ProgressView().tint(.white) }
-                    Text(activity.loading ? "Đang kết nối…" : "Kết nối").fontWeight(.semibold)
+                    Text(activity.loading ? Copy.text("Connecting…") : Copy.text("Connect")).fontWeight(.semibold)
                     Image(systemName: "arrow.up.right")
                 }.frame(maxWidth: .infinity).padding(.vertical, 9)
             }
@@ -87,10 +91,10 @@ struct DashboardView: View {
     private var progressCard: some View {
         VStack(spacing: 20) {
             HStack {
-                Label("HÔM NAY", systemImage: "figure.walk")
+                Label(Copy.text("TODAY"), systemImage: "figure.walk")
                     .font(.caption.weight(.bold)).tracking(2)
                 Spacer()
-                Text("\(Int(activity.progress * 100))% mục tiêu")
+                Text(Copy.format("%@%% of goal", Copy.number(Int(activity.progress * 100))))
                     .font(.caption.weight(.semibold))
                     .padding(.horizontal, 10).padding(.vertical, 6)
                     .background(.white.opacity(0.12), in: Capsule())
@@ -104,18 +108,18 @@ struct DashboardView: View {
                     .rotationEffect(.degrees(-90))
                 VStack(spacing: 4) {
                     Image(systemName: "figure.walk").font(.title).foregroundStyle(TrackStyle.mint)
-                    Text(activity.enabled && activity.snapshot.updatedAt != .distantPast ? activity.todaySteps.formatted() : "—")
+                    Text(activity.enabled && activity.snapshot.updatedAt != .distantPast ? Copy.number(activity.todaySteps) : "—")
                         .font(.system(size: 54, weight: .bold, design: .rounded))
                         .minimumScaleFactor(0.6).lineLimit(1)
                         .contentTransition(.numericText())
-                    Text("bước chân").font(.subheadline).foregroundStyle(.white.opacity(0.65))
+                    Text(Copy.text("steps")).font(.subheadline).foregroundStyle(.white.opacity(0.65))
                 }.padding(30)
             }
             .frame(width: 242, height: 242).padding(.vertical, 8)
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel("Hôm nay \(activity.todaySteps) bước, mục tiêu \(activity.goal) bước")
+            .accessibilityLabel(Copy.format("%@ steps today, goal %@", Copy.number(activity.todaySteps), Copy.number(activity.goal)))
             VStack(spacing: 6) {
-                Text(activity.todaySteps >= activity.goal ? "Đã đạt mục tiêu" : "Mục tiêu \(activity.goal.formatted()) bước")
+                Text(activity.todaySteps >= activity.goal ? Copy.text("Goal reached") : Copy.format("Goal: %@ steps", Copy.number(activity.goal)))
                     .font(.subheadline).foregroundStyle(.white.opacity(0.65))
             }
         }
@@ -125,11 +129,11 @@ struct DashboardView: View {
 
     private var metrics: some View {
         HStack(spacing: 14) {
-            metric("Quãng đường", symbol: "point.bottomleft.forward.to.point.topright.scurvepath",
-                   value: activity.todayDistance.map { ($0 / 1000).formatted(.number.precision(.fractionLength(2))) } ?? "—",
-                   unit: "km hôm nay")
-            metric("Còn lại", symbol: "flag.checkered",
-                   value: max(0, activity.goal - activity.todaySteps).formatted(), unit: "bước tới mục tiêu")
+            metric(Copy.text("Distance"), symbol: "point.bottomleft.forward.to.point.topright.scurvepath",
+                   value: activity.todayDistance.map { Copy.decimal($0 / 1000) } ?? "—",
+                   unit: Copy.text("km today"))
+            metric(Copy.text("Remaining"), symbol: "flag.checkered",
+                   value: Copy.number(max(0, activity.goal - activity.todaySteps)), unit: Copy.text("steps to goal"))
         }
     }
 
@@ -146,28 +150,28 @@ struct DashboardView: View {
         VStack(alignment: .leading, spacing: 20) {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Hoạt động").font(.headline)
+                    Text(Copy.text("Activity")).font(.headline)
                 }
                 Spacer()
                 Image(systemName: "chart.bar.xaxis").foregroundStyle(TrackStyle.green)
             }
             if !ActivityStore.motionOnly {
-                Picker("Khoảng thời gian", selection: $period) {
-                    Text("7 ngày").tag(7)
-                    Text("30 ngày").tag(30)
+                Picker(Copy.text("Period"), selection: $period) {
+                    Text(Copy.text("7 days")).tag(7)
+                    Text(Copy.text("30 days")).tag(30)
                 }.pickerStyle(.segmented)
             }
             if records.isEmpty {
-                ContentUnavailableView("Chưa có dữ liệu", systemImage: "figure.walk",
+                ContentUnavailableView(Copy.text("No data yet"), systemImage: "figure.walk",
                                        description: Text(""))
             } else {
                 Chart(records) { record in
-                    BarMark(x: .value("Ngày", record.date, unit: .day), y: .value("Bước", record.steps))
+                    BarMark(x: .value(Copy.text("Day"), record.date, unit: .day), y: .value(Copy.text("Steps"), record.steps))
                         .cornerRadius(5)
                         .foregroundStyle(Calendar.current.isDateInToday(record.date) ? TrackStyle.green : TrackStyle.green.opacity(0.3))
-                        .accessibilityLabel(record.date.formatted(date: .abbreviated, time: .omitted))
-                        .accessibilityValue("\(record.steps) bước")
-                    RuleMark(y: .value("Mục tiêu", activity.goal))
+                        .accessibilityLabel(record.date.formatted(.dateTime.day().month().locale(Copy.locale)))
+                        .accessibilityValue(Copy.format("%@ steps", Copy.number(record.steps)))
+                    RuleMark(y: .value(Copy.text("Goal"), activity.goal))
                         .foregroundStyle(TrackStyle.green.opacity(0.35))
                         .lineStyle(StrokeStyle(lineWidth: 1, dash: [4, 4]))
                 }
@@ -180,13 +184,13 @@ struct DashboardView: View {
                 .frame(height: 170)
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("TRUNG BÌNH / NGÀY").font(.caption2.weight(.semibold)).foregroundStyle(.secondary)
-                        Text((records.reduce(0) { $0 + $1.steps } / max(1, records.count)).formatted())
+                        Text(Copy.text("DAILY AVERAGE")).font(.caption2.weight(.semibold)).foregroundStyle(.secondary)
+                        Text(Copy.number(records.reduce(0) { $0 + $1.steps } / max(1, records.count)))
                             .font(.title2.weight(.bold))
                     }
                     Spacer()
                     VStack(alignment: .trailing, spacing: 4) {
-                        Text("NGÀY ĐẠT MỤC TIÊU").font(.caption2.weight(.semibold)).foregroundStyle(.secondary)
+                        Text(Copy.text("GOAL DAYS")).font(.caption2.weight(.semibold)).foregroundStyle(.secondary)
                         Text("\(records.filter { $0.steps >= activity.goal }.count) / \(records.count)")
                             .font(.title2.weight(.bold)).foregroundStyle(TrackStyle.green)
                     }
@@ -200,13 +204,13 @@ struct DashboardView: View {
             Label(activity.sourceName, systemImage: ActivityStore.motionOnly ? "iphone" : "heart.fill")
                 .font(.caption.weight(.medium)).foregroundStyle(TrackStyle.green)
             if activity.loading {
-                ProgressView("Đang cập nhật…").font(.caption)
+                ProgressView(Copy.text("Updating…")).font(.caption)
             } else if activity.snapshot.updatedAt != .distantPast {
-                Text("Cập nhật \(activity.snapshot.updatedAt.formatted(date: .abbreviated, time: .shortened))")
+                Text(Copy.format("Updated %@", Copy.date(activity.snapshot.updatedAt)))
                     .font(.caption).foregroundStyle(.secondary)
             }
             if activity.enabled && !ActivityStore.motionOnly && activity.todaySteps == 0 {
-                Text("Chưa có số bước · kiểm tra quyền trong Sức khỏe")
+                Text(Copy.text("No steps · check Health access"))
                     .font(.caption).foregroundStyle(.secondary).multilineTextAlignment(.center)
             }
         }.padding(.bottom, 12)
@@ -218,57 +222,68 @@ private struct SettingsScreen: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) private var openURL
     @State private var confirmDisconnect = false
+    @AppStorage("appLanguage", store: ActivityStorage.defaults) private var language = "vi"
 
     var body: some View {
         NavigationStack {
             Form {
-                Section("Mục tiêu mỗi ngày") {
-                    Text("\(activity.goal.formatted()) bước").font(.largeTitle.bold()).foregroundStyle(TrackStyle.green)
-                    Stepper("Điều chỉnh 500 bước", value: $activity.goal, in: 500...50_000, step: 500)
+                Section(Copy.text("Language")) {
+                    Picker(Copy.text("Language"), selection: $language) {
+                        ForEach(AppLanguage.allCases) { item in
+                            Text(item.name).tag(item.rawValue)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    .accessibilityIdentifier("languagePicker")
+                }
+                Section(Copy.text("Daily goal")) {
+                    Text(Copy.format("%@ steps", Copy.number(activity.goal))).font(.largeTitle.bold()).foregroundStyle(TrackStyle.green)
+                    Stepper(Copy.text("Adjust by 500 steps"), value: $activity.goal, in: 500...50_000, step: 500)
                     HStack {
                         ForEach([6_000, 8_000, 10_000], id: \.self) { goal in
-                            Button(goal.formatted()) { activity.goal = goal }
+                            Button(Copy.number(goal)) { activity.goal = goal }
                                 .buttonStyle(.bordered).frame(maxWidth: .infinity)
                         }
                     }
                 }
-                Section("Nguồn dữ liệu") {
+                Section(Copy.text("Data source")) {
                     Label(activity.sourceName, systemImage: "heart.text.square")
                     if !activity.enabled {
-                        Button("Kết nối dữ liệu") { Task { await activity.connect() } }.disabled(activity.loading)
+                        Button(Copy.text("Connect data")) { Task { await activity.connect() } }.disabled(activity.loading)
                     }
                     Text(ActivityStore.motionOnly
-                         ? "Bản Sideload dùng cảm biến iPhone, xem lại tối đa 7 ngày. Số liệu không bao gồm bước từ Apple Watch và có thể khác Apple Health."
-                         : "App chỉ đọc số bước và quãng đường. Đổi quyền tại Sức khỏe → ảnh đại diện → Ứng dụng → Step Track. iOS không cho app biết bạn đã từ chối quyền đọc hay chưa.")
+                         ? Copy.text("iPhone sensor · 7 days. Does not include Apple Watch or sync with Health.")
+                         : Copy.text("Read-only. Manage access in Health → profile → Apps → Step Track."))
                         .font(.footnote).foregroundStyle(.secondary)
-                    Button("Mở Cài đặt") { openURL(URL(string: UIApplication.openSettingsURLString)!) }
+                    Button(Copy.text("Open Settings")) { openURL(URL(string: UIApplication.openSettingsURLString)!) }
                 }
-                Section("Widget") {
+                Section(Copy.text("Widgets")) {
                     Text(ActivityStore.motionOnly
-                         ? "Bản Sideload cảm biến không kèm widget. Bản Health có widget khi được ký với quyền App Groups hợp lệ."
-                         : "Nhấn giữ màn hình chính → Sửa → Thêm tiện ích → Step Track. Có cỡ nhỏ, vừa và widget màn hình khóa.")
+                         ? Copy.text("Available in the Health build with valid App Groups signing.")
+                         : Copy.text("Hold Home Screen → Edit → Add Widget → Step Track."))
                     if !ActivityStore.motionOnly && ActivityStorage.sharedDefaults == nil {
-                        Label("Chưa truy cập được vùng dữ liệu chung. Kiểm tra chữ ký App Groups của app và widget.", systemImage: "exclamationmark.triangle")
+                        Label(Copy.text("Shared data unavailable. Check App Groups signing."), systemImage: "exclamationmark.triangle")
                             .foregroundStyle(.orange)
                     }
-                    Text("iOS quyết định lịch cập nhật widget; số bước không thay đổi tức thì sau mỗi bước chân.")
+                    Text(Copy.text("iOS controls refresh timing. Updates are not instant."))
                         .font(.footnote).foregroundStyle(.secondary)
                 }
-                Section("Riêng tư") {
-                    Text("Không tài khoản. Không quảng cáo. Không tải dữ liệu sức khỏe lên máy chủ.")
+                Section(Copy.text("Privacy")) {
+                    Text(Copy.text("No account, ads, or health data uploads."))
                     if activity.enabled {
-                        Button("Ngừng đọc & xóa bản lưu trong app", role: .destructive) { confirmDisconnect = true }
+                        Button(Copy.text("Disconnect and clear saved data"), role: .destructive) { confirmDisconnect = true }
                     }
                 }
                 Section("Step Track") {
-                    Text("Tham khảo Steps của Brittany Rima và cộng đồng · MIT License. Đây là bản tùy biến độc lập.")
+                    Text(Copy.text("Based on Steps by Brittany Rima & contributors · MIT. Independent version."))
                         .font(.footnote).foregroundStyle(.secondary)
                 }
             }
-            .navigationTitle("Cài đặt")
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button("Xong") { dismiss() } } }
-            .confirmationDialog("Xóa bản lưu và ngừng cập nhật? Dữ liệu gốc trong Sức khỏe không bị xóa.", isPresented: $confirmDisconnect, titleVisibility: .visible) {
-                Button("Ngừng đọc & xóa bản lưu", role: .destructive) { activity.disconnect() }
+            .navigationTitle(Copy.text("Settings"))
+            .onChange(of: language) { _, _ in WidgetCenter.shared.reloadAllTimelines() }
+            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(Copy.text("Done")) { dismiss() } } }
+            .confirmationDialog(Copy.text("Disconnect and clear saved data? Your original Health data stays intact."), isPresented: $confirmDisconnect, titleVisibility: .visible) {
+                Button(Copy.text("Disconnect and clear"), role: .destructive) { activity.disconnect() }
             }
         }
     }

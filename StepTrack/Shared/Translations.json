@@ -1,0 +1,258 @@
+{
+  "Today": {
+    "vi": "Hôm nay",
+    "ja": "今日"
+  },
+  "Settings and goal": {
+    "vi": "Cài đặt và mục tiêu",
+    "ja": "設定と目標"
+  },
+  "iPhone steps": {
+    "vi": "Bước chân từ iPhone",
+    "ja": "iPhoneの歩数"
+  },
+  "Connect to Health": {
+    "vi": "Kết nối Sức khỏe",
+    "ja": "ヘルスケアと連携"
+  },
+  "Read steps from your iPhone.": {
+    "vi": "Đọc bước chân từ cảm biến iPhone.",
+    "ja": "iPhoneの歩数を読み取ります。"
+  },
+  "Read your steps and distance.": {
+    "vi": "Đọc số bước và quãng đường của bạn.",
+    "ja": "歩数と距離を読み取ります。"
+  },
+  "Connecting…": {
+    "vi": "Đang kết nối…",
+    "ja": "接続中…"
+  },
+  "Connect": {
+    "vi": "Kết nối",
+    "ja": "連携する"
+  },
+  "TODAY": {
+    "vi": "HÔM NAY",
+    "ja": "今日"
+  },
+  "steps": {
+    "vi": "bước chân",
+    "ja": "歩"
+  },
+  "Goal reached": {
+    "vi": "Đã đạt mục tiêu",
+    "ja": "目標達成"
+  },
+  "Distance": {
+    "vi": "Quãng đường",
+    "ja": "距離"
+  },
+  "km today": {
+    "vi": "km hôm nay",
+    "ja": "km・今日"
+  },
+  "Remaining": {
+    "vi": "Còn lại",
+    "ja": "あと"
+  },
+  "steps to goal": {
+    "vi": "bước tới mục tiêu",
+    "ja": "歩で目標達成"
+  },
+  "Activity": {
+    "vi": "Hoạt động",
+    "ja": "アクティビティ"
+  },
+  "Period": {
+    "vi": "Khoảng thời gian",
+    "ja": "期間"
+  },
+  "7 days": {
+    "vi": "7 ngày",
+    "ja": "7日間"
+  },
+  "30 days": {
+    "vi": "30 ngày",
+    "ja": "30日間"
+  },
+  "No data yet": {
+    "vi": "Chưa có dữ liệu",
+    "ja": "データなし"
+  },
+  "Day": {
+    "vi": "Ngày",
+    "ja": "日"
+  },
+  "Steps": {
+    "vi": "Bước",
+    "ja": "歩数"
+  },
+  "Goal": {
+    "vi": "Mục tiêu",
+    "ja": "目標"
+  },
+  "DAILY AVERAGE": {
+    "vi": "TRUNG BÌNH / NGÀY",
+    "ja": "1日平均"
+  },
+  "GOAL DAYS": {
+    "vi": "NGÀY ĐẠT MỤC TIÊU",
+    "ja": "目標達成日"
+  },
+  "Updating…": {
+    "vi": "Đang cập nhật…",
+    "ja": "更新中…"
+  },
+  "No steps · check Health access": {
+    "vi": "Chưa có số bước · kiểm tra quyền trong Sức khỏe",
+    "ja": "歩数なし・ヘルスケアの権限を確認"
+  },
+  "Daily goal": {
+    "vi": "Mục tiêu mỗi ngày",
+    "ja": "1日の目標"
+  },
+  "Adjust by 500 steps": {
+    "vi": "Điều chỉnh 500 bước",
+    "ja": "500歩ずつ調整"
+  },
+  "Data source": {
+    "vi": "Nguồn dữ liệu",
+    "ja": "データソース"
+  },
+  "Connect data": {
+    "vi": "Kết nối dữ liệu",
+    "ja": "データを連携"
+  },
+  "iPhone sensor · 7 days. Does not include Apple Watch or sync with Health.": {
+    "vi": "Bản Sideload dùng cảm biến iPhone, xem lại tối đa 7 ngày. Số liệu không bao gồm bước từ Apple Watch và có thể khác Apple Health.",
+    "ja": "iPhoneのセンサー・過去7日間。Apple Watchの歩数やヘルスケアとの同期は含まれません。"
+  },
+  "Read-only. Manage access in Health → profile → Apps → Step Track.": {
+    "vi": "App chỉ đọc số bước và quãng đường. Đổi quyền tại Sức khỏe → ảnh đại diện → Ứng dụng → Step Track. iOS không cho app biết bạn đã từ chối quyền đọc hay chưa.",
+    "ja": "読み取り専用。権限の変更：ヘルスケア → プロフィール → アプリ → Step Track。"
+  },
+  "Open Settings": {
+    "vi": "Mở Cài đặt",
+    "ja": "設定を開く"
+  },
+  "Widgets": {
+    "vi": "Widget",
+    "ja": "ウィジェット"
+  },
+  "Available in the Health build with valid App Groups signing.": {
+    "vi": "Bản Sideload cảm biến không kèm widget. Bản Health có widget khi được ký với quyền App Groups hợp lệ.",
+    "ja": "App Groupsの有効な署名を持つHealth版で利用できます。"
+  },
+  "Hold Home Screen → Edit → Add Widget → Step Track.": {
+    "vi": "Nhấn giữ màn hình chính → Sửa → Thêm tiện ích → Step Track. Có cỡ nhỏ, vừa và widget màn hình khóa.",
+    "ja": "ホーム画面を長押し → 編集 → ウィジェットを追加 → Step Track。"
+  },
+  "Shared data unavailable. Check App Groups signing.": {
+    "vi": "Chưa truy cập được vùng dữ liệu chung. Kiểm tra chữ ký App Groups của app và widget.",
+    "ja": "共有データにアクセスできません。App Groupsの署名を確認してください。"
+  },
+  "iOS controls refresh timing. Updates are not instant.": {
+    "vi": "iOS quyết định lịch cập nhật widget; số bước không thay đổi tức thì sau mỗi bước chân.",
+    "ja": "更新間隔はiOSが管理します。リアルタイム更新ではありません。"
+  },
+  "Privacy": {
+    "vi": "Riêng tư",
+    "ja": "プライバシー"
+  },
+  "No account, ads, or health data uploads.": {
+    "vi": "Không tài khoản. Không quảng cáo. Không tải dữ liệu sức khỏe lên máy chủ.",
+    "ja": "アカウント・広告・健康データの送信はありません。"
+  },
+  "Disconnect and clear saved data": {
+    "vi": "Ngừng đọc & xóa bản lưu trong app",
+    "ja": "連携を解除して保存データを削除"
+  },
+  "Based on Steps by Brittany Rima & contributors · MIT. Independent version.": {
+    "vi": "Tham khảo Steps của Brittany Rima và cộng đồng · MIT License. Đây là bản tùy biến độc lập.",
+    "ja": "Brittany Rimaと貢献者によるStepsを参考に作成・MIT。独立したバージョンです。"
+  },
+  "Settings": {
+    "vi": "Cài đặt",
+    "ja": "設定"
+  },
+  "Done": {
+    "vi": "Xong",
+    "ja": "完了"
+  },
+  "Disconnect and clear saved data? Your original Health data stays intact.": {
+    "vi": "Xóa bản lưu và ngừng cập nhật? Dữ liệu gốc trong Sức khỏe không bị xóa.",
+    "ja": "連携を解除して保存データを削除しますか？ヘルスケアの元データは削除されません。"
+  },
+  "Disconnect and clear": {
+    "vi": "Ngừng đọc & xóa bản lưu",
+    "ja": "解除して削除"
+  },
+  "Open app to connect": {
+    "vi": "Mở app để kết nối",
+    "ja": "アプリを開いて連携"
+  },
+  "Open app to check widget": {
+    "vi": "Mở app để kiểm tra widget",
+    "ja": "アプリでウィジェットを確認"
+  },
+  "Open app to update": {
+    "vi": "Mở app để cập nhật",
+    "ja": "アプリを開いて更新"
+  },
+  "Steps over the last 7 days": {
+    "vi": "Biểu đồ bước chân 7 ngày gần nhất",
+    "ja": "過去7日間の歩数"
+  },
+  "Today's steps": {
+    "vi": "Nhịp bước hôm nay",
+    "ja": "今日の歩数"
+  },
+  "Your steps, goal, and activity.": {
+    "vi": "Số bước, mục tiêu và nhịp vận động của bạn.",
+    "ja": "歩数・目標・アクティビティ。"
+  },
+  "iPhone sensor": {
+    "vi": "Cảm biến iPhone",
+    "ja": "iPhoneのセンサー"
+  },
+  "Language": {
+    "vi": "Ngôn ngữ",
+    "ja": "言語"
+  },
+  "Could not connect. Check access in Settings.": {
+    "vi": "Không thể kết nối. Kiểm tra quyền trong Cài đặt.",
+    "ja": "接続できません。設定で権限を確認してください。"
+  },
+  "Could not update. Unlock iPhone and pull to refresh.": {
+    "vi": "Chưa cập nhật được. Mở khóa iPhone rồi kéo để thử lại.",
+    "ja": "更新できません。iPhoneのロックを解除して再試行してください。"
+  },
+  "%@%% of goal": {
+    "vi": "%@%% mục tiêu",
+    "ja": "目標の%@%%"
+  },
+  "Goal: %@ steps": {
+    "vi": "Mục tiêu %@ bước",
+    "ja": "目標 %@歩"
+  },
+  "%@ steps": {
+    "vi": "%@ bước",
+    "ja": "%@歩"
+  },
+  "%@ steps today, goal %@": {
+    "vi": "Hôm nay %@ bước, mục tiêu %@ bước",
+    "ja": "今日%@歩、目標%@歩"
+  },
+  "Updated %@": {
+    "vi": "Cập nhật %@",
+    "ja": "更新 %@"
+  },
+  "At %@": {
+    "vi": "Lúc %@",
+    "ja": "%@時点"
+  },
+  "/ %@ steps": {
+    "vi": "/ %@ bước",
+    "ja": "/ %@歩"
+  }
+}

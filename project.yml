@@ -22,6 +22,7 @@ targets:
       - StepTrack/App
       - StepTrack/Shared
       - StepTrack/Assets.xcassets
+      - StepTrack/Resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID)
@@ -76,10 +77,21 @@ targets:
       base:
         GENERATE_INFOPLIST_FILE: YES
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).tests
+  StepTrackUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [StepTrack/UITests]
+    dependencies:
+      - target: StepTrack
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).uitests
+        TEST_TARGET_NAME: StepTrack
 schemes:
   StepTrack:
     build:
       targets:
         StepTrack: all
     test:
-      targets: [StepTrackTests]
+      targets: [StepTrackTests, StepTrackUITests]

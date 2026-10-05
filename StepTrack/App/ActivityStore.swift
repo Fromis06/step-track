@@ -37,7 +37,7 @@ final class ActivityStore: ObservableObject {
         false
         #endif
     }
-    var sourceName: String { Self.motionOnly ? "Cảm biến iPhone" : "Apple Health" }
+    var sourceName: String { Self.motionOnly ? Copy.text("iPhone sensor") : "Apple Health" }
     var todaySteps: Int { snapshot.steps() }
     var progress: Double { snapshot.progress() }
     var todayDistance: Double? {
@@ -60,7 +60,7 @@ final class ActivityStore: ObservableObject {
             enabled = true
             UserDefaults.standard.set(true, forKey: "trackingEnabled")
         } catch {
-            message = "Không thể kết nối. Kiểm tra quyền truy cập và thử lại. \(error.localizedDescription)"
+            message = "Could not connect. Check access in Settings."
         }
         loading = false
         if enabled { await resume() }
@@ -115,7 +115,7 @@ final class ActivityStore: ObservableObject {
         } catch {
             guard enabled, expectedGeneration == generation else { return }
             // Retain the last successful snapshot; label it stale instead of fabricating zero data.
-            message = "Chưa cập nhật được. Hãy mở khóa iPhone, kiểm tra quyền truy cập rồi kéo xuống để thử lại."
+            message = "Could not update. Unlock iPhone and pull to refresh."
         }
     }
 

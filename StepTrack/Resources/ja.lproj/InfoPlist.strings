@@ -1,0 +1,2 @@
+"NSHealthShareUsageDescription" = "歩数と歩行距離を読み取り、アクティビティとウィジェットに表示します。データは端末内にのみ保存されます。";
+"NSMotionUsageDescription" = "iPhoneのモーションセンサーから歩数と距離を読み取ります。";

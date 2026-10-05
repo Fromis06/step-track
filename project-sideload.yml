@@ -18,6 +18,7 @@ targets:
       - StepTrack/App
       - StepTrack/Shared
       - StepTrack/Assets.xcassets
+      - StepTrack/Resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID)

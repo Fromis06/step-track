@@ -8,6 +8,7 @@ final class ActivityStore: ObservableObject {
     @Published private(set) var snapshot = ActivityStorage.load()
     @Published private(set) var loading = false
     @Published private(set) var message: String?
+    @Published private(set) var connectionDiagnostic: String?
     @Published private(set) var enabled = UserDefaults.standard.bool(forKey: "trackingEnabled")
     @Published var goal = ActivityStorage.goal {
         didSet {
@@ -48,11 +49,15 @@ final class ActivityStore: ObservableObject {
         guard !loading else { return }
         loading = true
         message = nil
+        connectionDiagnostic = nil
         do {
             if Self.motionOnly {
                 guard CMPedometer.isStepCountingAvailable() else { throw ActivityError.unavailable }
                 _ = try await motionData(from: Calendar.current.startOfDay(for: Date()), to: Date())
             } else {
+                guard SigningStatus.current.healthKitInProfile != false else {
+                    throw ActivityError.healthKitNotProvisioned
+                }
                 guard HKHealthStore.isHealthDataAvailable() else { throw ActivityError.unavailable }
                 try await health.requestAuthorization(toShare: [], read: [stepType, distanceType])
                 // Success means the authorization sheet completed, NOT that read access was granted.
@@ -60,7 +65,13 @@ final class ActivityStore: ObservableObject {
             enabled = true
             UserDefaults.standard.set(true, forKey: "trackingEnabled")
         } catch {
-            message = "Could not connect. Check access in Settings."
+            if case ActivityError.healthKitNotProvisioned = error {
+                message = "HealthKit is missing from this app's signing profile."
+            } else {
+                message = "Could not connect. Check access in Settings."
+            }
+            let detail = error as NSError
+            connectionDiagnostic = "\(detail.domain) (\(detail.code)): \(detail.localizedDescription)"
         }
         loading = false
         if enabled { await resume() }
@@ -202,5 +213,11 @@ final class ActivityStore: ObservableObject {
 
 private enum ActivityError: LocalizedError {
     case unavailable
-    var errorDescription: String? { "Dữ liệu không khả dụng trên thiết bị này." }
+    case healthKitNotProvisioned
+    var errorDescription: String? {
+        switch self {
+        case .unavailable: "Health data is unavailable on this device."
+        case .healthKitNotProvisioned: "The installed provisioning profile does not include HealthKit."
+        }
+    }
 }

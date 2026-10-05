@@ -25,7 +25,9 @@ struct ActivitySnapshot: Codable, Equatable {
 
 enum ActivityStorage {
     static var groupID: String {
-        Bundle.main.object(forInfoDictionaryKey: "AppGroupIdentifier") as? String ?? ""
+        guard let configured = Bundle.main.object(forInfoDictionaryKey: "AppGroupIdentifier") as? String else { return "" }
+        let allowed = ProvisioningProfile.entitlements?["com.apple.security.application-groups"] as? [String] ?? []
+        return ProvisioningProfile.sharedGroup(configured: configured, allowed: allowed)
     }
 
     // A missing app group must never silently look like a connected widget.

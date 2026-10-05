@@ -254,5 +254,45 @@
   "/ %@ steps": {
     "vi": "/ %@ bước",
     "ja": "/ %@歩"
+  },
+  "HealthKit is missing from this app's signing profile.": {
+    "vi": "Bản ký này chưa có quyền HealthKit.",
+    "ja": "この署名プロファイルにHealthKitがありません。"
+  },
+  "Connection check": {
+    "vi": "Kiểm tra kết nối",
+    "ja": "接続の確認"
+  },
+  "In signing profile": {
+    "vi": "Có trong hồ sơ ký",
+    "ja": "署名プロファイルにあり"
+  },
+  "Missing from signing profile": {
+    "vi": "Thiếu trong hồ sơ ký",
+    "ja": "署名プロファイルになし"
+  },
+  "Profile not readable": {
+    "vi": "Không đọc được hồ sơ ký",
+    "ja": "プロファイルを読み取れません"
+  },
+  "Included in app": {
+    "vi": "Có trong app",
+    "ja": "アプリに含まれています"
+  },
+  "Removed from app": {
+    "vi": "Không còn trong app",
+    "ja": "アプリに含まれていません"
+  },
+  "Accessible": {
+    "vi": "Truy cập được",
+    "ja": "アクセス可能"
+  },
+  "Unavailable": {
+    "vi": "Không truy cập được",
+    "ja": "アクセス不可"
+  },
+  "Share diagnostics": {
+    "vi": "Chia sẻ kết quả",
+    "ja": "診断結果を共有"
   }
 }

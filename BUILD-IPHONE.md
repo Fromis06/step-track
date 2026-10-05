@@ -17,7 +17,16 @@ Vào Cài đặt → Ngôn ngữ để chọn Tiếng Việt / English / 日本�
 
 Bản cảm biến không thay thế kết nối Apple Health. Bản Health cần cấp quyền đọc một lần trên iPhone. Cả hai chỉ lưu dữ liệu trên thiết bị, không có tài khoản hay máy chủ.
 
-Sideloadly không tự cấp các entitlement mà provisioning profile không cho phép. Ký lại có thể thay Bundle ID, bỏ quyền hoặc extension; vì vậy **chưa thể hứa bản Health và widget hoạt động với Apple ID miễn phí**. Nếu bản Health không ký/cài được, dùng bản `sideload` để thử giao diện và bước chân từ cảm biến. Để dùng trọn bộ, cần signing có các capability tương ứng; thường dùng Apple Developer Program và đăng ký App IDs/App Group riêng.
+Sideloadly không tự cấp các entitlement mà provisioning profile không cho phép. Ký lại có thể thay Bundle ID, bỏ quyền hoặc extension. Bảng capability hiện tại của Apple liệt kê HealthKit và App Groups cho cả Apple Developer miễn phí, nên không thể kết luận cần trả phí chỉ từ loại tài khoản. Tuy nhiên, công cụ ký phải giữ widget và xin đúng quyền cho app/profile. Changelog Sideloadly giới hạn tính năng custom entitlements của họ ở Apple Developer Program và Patreon; đây là giới hạn công cụ, không đồng nghĩa quyền Apple luôn yêu cầu trả phí.
+
+## Nếu Health hoặc widget không xuất hiện
+
+- Bấm Kết nối trong app. Chỉ mở app không tự bật bảng xin quyền.
+- Trong Sideloadly, không dùng Remove Extensions cho widget của Step Track. Tính năng này xóa phần widget khỏi IPA.
+- Bản mới có **Cài đặt → Kiểm tra kết nối → Chia sẻ kết quả**. Mục này cho biết HealthKit có trong profile không, widget còn trong app không, App Group có truy cập được không và lỗi kết nối gần nhất. Không kèm số bước hoặc dữ liệu sức khỏe.
+- Có quyền trong profile chưa chứng minh chữ ký thực tế đã giữ quyền đó. Cần đối chiếu lỗi HealthKit nếu profile có quyền nhưng vẫn không kết nối.
+- App tự theo tên App Group sau ký lại nếu profile cấp đúng một group. Với nhiều group không rõ ràng, app giữ định danh cấu hình và báo không truy cập được thay vì chọn đại.
+- [Apple supported capabilities](https://developer.apple.com/help/account/reference/supported-capabilities-ios), [Sideloadly changelog](https://sideloadly.io/changelog).
 
 ## Build bằng GitHub Actions
 

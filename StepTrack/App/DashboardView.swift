@@ -274,6 +274,22 @@ private struct SettingsScreen: View {
                         Button(Copy.text("Disconnect and clear saved data"), role: .destructive) { confirmDisconnect = true }
                     }
                 }
+                if !ActivityStore.motionOnly {
+                    Section {
+                        DisclosureGroup(Copy.text("Connection check")) {
+                            let status = SigningStatus.current
+                            LabeledContent("HealthKit", value: Copy.text(status.healthKitInProfile.map { $0 ? "In signing profile" : "Missing from signing profile" } ?? "Profile not readable"))
+                            LabeledContent(Copy.text("Widgets"), value: Copy.text(status.widgetIncluded ? "Included in app" : "Removed from app"))
+                            LabeledContent("App Group", value: Copy.text(status.sharedContainerAvailable ? "Accessible" : "Unavailable"))
+                            if let error = activity.connectionDiagnostic {
+                                Text(error).font(.caption).textSelection(.enabled)
+                            }
+                            ShareLink(item: diagnosticReport(status)) {
+                                Label(Copy.text("Share diagnostics"), systemImage: "square.and.arrow.up")
+                            }
+                        }
+                    }
+                }
                 Section("Step Track") {
                     Text(Copy.text("Based on Steps by Brittany Rima & contributors · MIT. Independent version."))
                         .font(.footnote).foregroundStyle(.secondary)
@@ -286,6 +302,17 @@ private struct SettingsScreen: View {
                 Button(Copy.text("Disconnect and clear"), role: .destructive) { activity.disconnect() }
             }
         }
+    }
+
+    private func diagnosticReport(_ status: SigningStatus) -> String {
+        [
+            "Step Track \(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?")",
+            "Bundle: \(Bundle.main.bundleIdentifier ?? "?")",
+            "HealthKit in profile: \(status.healthKitInProfile.map { String($0) } ?? "unknown")",
+            "Widget included: \(status.widgetIncluded)",
+            "App Group accessible: \(status.sharedContainerAvailable)",
+            "Connection error: \(activity.connectionDiagnostic ?? "none")"
+        ].joined(separator: "\n")
     }
 }
 

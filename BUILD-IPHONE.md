@@ -2,7 +2,11 @@
 
 ## Trạng thái
 
-Mã nguồn và workflow đã được chuẩn bị trên Windows. Chưa có kết quả biên dịch Xcode hay kiểm thử trên iPhone. IPA chỉ xuất hiện sau khi workflow GitHub chạy thành công.
+Hai IPA ba ngôn ngữ đã build thành công bằng Xcode trên GitHub Actions. Bốn unit tests và kiểm thử giao diện đổi Việt/Anh/Nhật, giữ lựa chọn sau khi mở lại app đã qua trên iPhone 16 Pro simulator. Đã xem ảnh chụp giao diện từ kiểm thử. [Build đã kiểm tra](https://github.com/Fromis06/step-track/actions/runs/37258982058). Chưa kiểm thử HealthKit/cảm biến/chữ ký trên iPhone thật.
+
+## Ngôn ngữ
+
+Vào Cài đặt → Ngôn ngữ để chọn Tiếng Việt / English / 日本語. App lưu lựa chọn và yêu cầu widget cập nhật cùng ngôn ngữ; thời điểm widget đổi do iOS quyết định. Ngày, số và nhãn trong app theo lựa chọn này. Hộp thoại quyền truy cập do iOS quản lý nên theo ngôn ngữ hệ thống/app trong Cài đặt iPhone.
 
 ## Hai bản build
 

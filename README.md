@@ -1,6 +1,6 @@
 # Step Track
 
-Ứng dụng đếm bước cá nhân cho iPhone, giao diện SwiftUI tối giản xanh lá, tiếng Việt và tự theo chế độ sáng/tối.
+Ứng dụng đếm bước cá nhân cho iPhone, giao diện SwiftUI tối giản xanh lá và tự theo chế độ sáng/tối. Đổi Tiếng Việt / English / 日本語 ngay trong Cài đặt; lựa chọn được lưu cho app và widget.
 
 - Số bước, mục tiêu tùy chỉnh, quãng đường, biểu đồ 7/30 ngày.
 - Bản Health đọc Apple Health, lưu snapshot chung cho widget Home Screen/Lock Screen.
@@ -8,7 +8,7 @@
 - GitHub Actions dùng macOS runner xuất hai IPA để ký lại, không yêu cầu thông tin Apple ID trong CI.
 - Không quảng cáo, đăng nhập, paywall hay gửi dữ liệu sức khỏe lên máy chủ.
 
-**Chưa được biên dịch bằng Xcode hoặc thử trên thiết bị trong phiên làm việc Windows.** Chạy workflow để kiểm tra build và lấy IPA. HealthKit/widget còn phụ thuộc chữ ký và provisioning profile; không cam kết hoạt động với tài khoản ký miễn phí.
+Hai IPA ba ngôn ngữ đã build thành công trên GitHub macOS runner. Unit tests và kiểm thử giao diện đổi ngôn ngữ/lưu lựa chọn sau khi mở lại app đã qua trên iPhone 16 Pro simulator. [Build đã kiểm tra](https://github.com/Fromis06/step-track/actions/runs/37258982058). Chưa thử trên iPhone thật. HealthKit/widget còn phụ thuộc chữ ký và provisioning profile; không cam kết hoạt động với tài khoản ký miễn phí.
 
 ## Bắt đầu
 

@@ -1,0 +1,84 @@
+name: Build iPhone IPA
+on:
+  push:
+    paths: ['StepTrack/**', 'project*.yml', 'scripts/**', '.github/workflows/build-ios.yml']
+  pull_request:
+    paths: ['StepTrack/**', 'project*.yml', 'scripts/**', '.github/workflows/build-ios.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        flavor: [health, sideload]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install project generator
+        run: brew install xcodegen
+      - name: Generate Xcode project
+        env:
+          FLAVOR: ${{ matrix.flavor }}
+        run: |
+          if [ "$FLAVOR" = health ]; then
+            xcodegen generate --spec project.yml
+          else
+            xcodegen generate --spec project-sideload.yml
+          fi
+      - name: Test daily totals and midnight rollover
+        if: matrix.flavor == 'health'
+        run: |
+          set -o pipefail
+          DEVICE_ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(x["udid"] for group in d["devices"].values() for x in group if x["name"].startswith("iPhone")))')
+          xcodebuild test -project StepTrack.xcodeproj -scheme StepTrack \
+            -destination "platform=iOS Simulator,id=$DEVICE_ID" \
+            -resultBundlePath build/Tests.xcresult \
+            CODE_SIGNING_ALLOWED=NO | tee test.log
+      - name: Build unsigned device app
+        env:
+          FLAVOR: ${{ matrix.flavor }}
+        run: |
+          set -o pipefail
+          PROJECT=StepTrack.xcodeproj
+          if [ "$FLAVOR" = sideload ]; then PROJECT=StepTrackSideload.xcodeproj; fi
+          xcodebuild build -project "$PROJECT" -scheme StepTrack -configuration Release \
+            -sdk iphoneos -destination 'generic/platform=iOS' \
+            -derivedDataPath build/device \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
+            CURRENT_PROJECT_VERSION="$GITHUB_RUN_NUMBER" | tee build.log
+      - name: Package IPA for re-signing
+        env:
+          FLAVOR: ${{ matrix.flavor }}
+        run: |
+          mkdir -p build/package/Payload
+          ditto build/device/Build/Products/Release-iphoneos/StepTrack.app build/package/Payload/StepTrack.app
+          # Preserve intended capabilities in an ad-hoc signature for re-signing tools.
+          # This is NOT a device-installable signature or a provisioning profile.
+          if [ "$FLAVOR" = health ]; then
+            python3 scripts/resolve-entitlements.py
+            codesign --force --sign - --entitlements build/Widget.entitlements build/package/Payload/StepTrack.app/PlugIns/StepTrackWidget.appex
+            codesign --force --sign - --entitlements build/StepTrack.entitlements build/package/Payload/StepTrack.app
+          fi
+          cd build/package
+          zip -qry "../StepTrack-$FLAVOR-unsigned.ipa" Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: StepTrack-${{ matrix.flavor }}-unsigned
+          path: build/StepTrack-*-unsigned.ipa
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload build diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: diagnostics-${{ matrix.flavor }}
+          path: |
+            *.log
+            build/Tests.xcresult
+          retention-days: 7

@@ -105,3 +105,12 @@ fastlane/test_output
 iOSInjectionProject/
 
 .DS_Store
+
+# Generated Step Track projects and local build outputs
+StepTrack.xcodeproj/
+StepTrackSideload.xcodeproj/
+StepTrack/Config/*.plist
+StepTrack/Config/*.entitlements
+*.log
+__pycache__/
+.tools/

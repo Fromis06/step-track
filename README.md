@@ -1,52 +1,30 @@
 # Step Track
 
-Ứng dụng đếm bước cá nhân cho iPhone, giao diện SwiftUI tối giản xanh lá và tự theo chế độ sáng/tối. Đổi Tiếng Việt / English / 日本語 ngay trong Cài đặt; lựa chọn được lưu cho app và widget.
+Ứng dụng đếm bước cá nhân cho iPhone, giao diện SwiftUI tối giản xanh lá, sáng/tối và Tiếng Việt / English / 日本語.
 
-- Số bước, mục tiêu tùy chỉnh, quãng đường, biểu đồ 7/30 ngày.
-- Bản Health đọc Apple Health, lưu snapshot chung cho widget Home Screen/Lock Screen.
-- Bản Sideload dùng cảm biến iPhone, lịch sử 7 ngày, không HealthKit/widget, để thử ký bằng Sideloadly.
-- GitHub Actions dùng macOS runner xuất hai IPA để ký lại, không yêu cầu thông tin Apple ID trong CI.
-- Không quảng cáo, đăng nhập, paywall hay gửi dữ liệu sức khỏe lên máy chủ.
+- Cảm biến iPhone: số bước, quãng đường, mục tiêu và biểu đồ 7 ngày.
+- Thanh điều hướng nổi chỉ icon: Trang chủ, Thống kê, Cài đặt.
+- Lịch hoạt động tháng/năm, mục tiêu riêng từng ngày và lịch sử lưu lâu dài.
+- Không quảng cáo, tài khoản, paywall hay gửi dữ liệu lên máy chủ.
+- GitHub Actions kiểm thử trên iPhone 11 simulator và xuất IPA để ký lại bằng Sideloadly.
 
-Hai IPA ba ngôn ngữ đã build thành công trên GitHub macOS runner. Unit tests và kiểm thử giao diện đổi ngôn ngữ/lưu lựa chọn sau khi mở lại app đã qua trên iPhone 16 Pro simulator. [Build đã kiểm tra](https://github.com/Fromis06/step-track/actions/runs/37258982058). Chưa thử trên iPhone thật. HealthKit/widget còn phụ thuộc chữ ký và provisioning profile; không cam kết hoạt động với tài khoản ký miễn phí.
+## Build
 
-## Bắt đầu
-
-Xem [hướng dẫn build và cài lên iPhone](BUILD-IPHONE.md).
-
-Trên Mac:
+Xem [hướng dẫn cài iPhone](BUILD-IPHONE.md). Trên Mac:
 
 ```sh
 brew install xcodegen
-xcodegen generate --spec project.yml
-open StepTrack.xcodeproj
-```
-
-Để tạo bản chỉ dùng cảm biến:
-
-```sh
 xcodegen generate --spec project-sideload.yml
 open StepTrackSideload.xcodeproj
 ```
 
-## Cấu trúc
+Mã app nằm trong `StepTrack/App`, dữ liệu trong `StepTrack/Shared`, kiểm thử trong `StepTrack/Tests` và `StepTrack/UITests`.
 
-| Đường dẫn | Vai trò |
-|---|---|
-| `StepTrack/App` | Giao diện và đọc HealthKit/Core Motion |
-| `StepTrack/Shared` | Dữ liệu theo ngày, cache và mục tiêu |
-| `StepTrack/Widget` | Widget đọc cache, xử lý qua ngày mới |
-| `StepTrack/Tests` | Unit tests về ngày, mục tiêu và dữ liệu lưu |
-| `project.yml` | Dự án Health + widget |
-| `project-sideload.yml` | Dự án Core Motion không quyền HealthKit/App Groups |
-| `.github/workflows/build-ios.yml` | Build, test và đóng gói IPA |
+Cấu hình Health/widget cũ (`project.yml`) vẫn được giữ để tham khảo, không nằm trong workflow hiện tại. Bản đang phát triển dùng Motion và không yêu cầu quyền HealthKit/App Groups.
 
 ## Nguồn gốc
 
-Được khởi tạo bằng clone [brittanyarima/Steps](https://github.com/brittanyarima/Steps), commit `e395cdd`, giấy phép MIT. Giữ nguyên [LICENSE](LICENSE) và [README gốc](README.upstream.md).
-
-Bản tùy biến triển khai app trong `StepTrack/`, tham khảo SwiftUI/HealthKit/WidgetKit của dự án gốc. Các thư mục `Steps/`, `StepsWidget/`, `StepsTests/` và `Steps.xcodeproj` giữ làm nguồn tham khảo upstream, **không nằm trong build mới**. Mở dự án `StepTrack.xcodeproj` do XcodeGen sinh ra để làm việc với bản mới. Không có quan hệ phát hành với tác giả gốc.
-
+Khởi tạo từ [brittanyarima/Steps](https://github.com/brittanyarima/Steps), commit `e395cdd`, giấy phép MIT. Giữ [LICENSE](LICENSE) và [README gốc](README.upstream.md). Các thư mục `Steps/`, `StepsWidget/`, `StepsTests/`, `Steps.xcodeproj` là nguồn tham khảo upstream, không nằm trong bản build mới. Đây là bản tùy biến độc lập.
 
 ## Sideload: lịch sử và điều hướng
 

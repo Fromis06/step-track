@@ -1,89 +1,32 @@
 # Step Track · iPhone 11 / iOS 18.3.2
 
-## Trạng thái
-
-Hai IPA ba ngôn ngữ đã build thành công bằng Xcode trên GitHub Actions. Bốn unit tests và kiểm thử giao diện đổi Việt/Anh/Nhật, giữ lựa chọn sau khi mở lại app đã qua trên iPhone 16 Pro simulator. Đã xem ảnh chụp giao diện từ kiểm thử. [Build đã kiểm tra](https://github.com/Fromis06/step-track/actions/runs/37258982058). Chưa kiểm thử HealthKit/cảm biến/chữ ký trên iPhone thật.
-
-## Ngôn ngữ
-
-Vào Cài đặt → Ngôn ngữ để chọn Tiếng Việt / English / 日本語. App lưu lựa chọn và yêu cầu widget cập nhật cùng ngôn ngữ; thời điểm widget đổi do iOS quyết định. Ngày, số và nhãn trong app theo lựa chọn này. Hộp thoại quyền truy cập do iOS quản lý nên theo ngôn ngữ hệ thống/app trong Cài đặt iPhone.
-
-## Hai bản build
-
-| Artifact | Dữ liệu | Widget | Cài đặt |
-|---|---|---|---|
-| `StepTrack-sideload-unsigned` | Core Motion của iPhone, 7 ngày | Không | Dành để thử ký bằng Sideloadly / Apple ID miễn phí |
-| `StepTrack-health-unsigned` | Apple Health, 30 ngày | Home Screen nhỏ/vừa + Lock Screen | Cần chữ ký và provisioning hỗ trợ HealthKit, Background Delivery và App Groups |
-
-Bản cảm biến không thay thế kết nối Apple Health. Bản Health cần cấp quyền đọc một lần trên iPhone. Cả hai chỉ lưu dữ liệu trên thiết bị, không có tài khoản hay máy chủ.
-
-Sideloadly không tự cấp các entitlement mà provisioning profile không cho phép. Ký lại có thể thay Bundle ID, bỏ quyền hoặc extension. Bảng capability hiện tại của Apple liệt kê HealthKit và App Groups cho cả Apple Developer miễn phí, nên không thể kết luận cần trả phí chỉ từ loại tài khoản. Tuy nhiên, công cụ ký phải giữ widget và xin đúng quyền cho app/profile. Changelog Sideloadly giới hạn tính năng custom entitlements của họ ở Apple Developer Program và Patreon; đây là giới hạn công cụ, không đồng nghĩa quyền Apple luôn yêu cầu trả phí.
-
-## Nếu Health hoặc widget không xuất hiện
-
-- Bấm Kết nối trong app. Chỉ mở app không tự bật bảng xin quyền.
-- Trong Sideloadly, không dùng Remove Extensions cho widget của Step Track. Tính năng này xóa phần widget khỏi IPA.
-- Bản mới có **Cài đặt → Kiểm tra kết nối → Chia sẻ kết quả**. Mục này cho biết HealthKit có trong profile không, widget còn trong app không, App Group có truy cập được không và lỗi kết nối gần nhất. Không kèm số bước hoặc dữ liệu sức khỏe.
-- Có quyền trong profile chưa chứng minh chữ ký thực tế đã giữ quyền đó. Cần đối chiếu lỗi HealthKit nếu profile có quyền nhưng vẫn không kết nối.
-- App tự theo tên App Group sau ký lại nếu profile cấp đúng một group. Với nhiều group không rõ ràng, app giữ định danh cấu hình và báo không truy cập được thay vì chọn đại.
-- [Apple supported capabilities](https://developer.apple.com/help/account/reference/supported-capabilities-ios), [Sideloadly changelog](https://sideloadly.io/changelog).
-
 ## Build bằng GitHub Actions
 
-1. Tạo repo của bạn trên GitHub, đưa toàn bộ thư mục dự án vào repo, gồm thư mục ẩn `.github`. Không push vào repository gốc của Brittany Rima.
-2. Nếu fork: thêm các thay đổi của bản tùy biến này vào fork. Chỉ fork repo gốc sẽ chưa có giao diện/workflow mới.
-3. Vào **Actions → Build iPhone IPA → Run workflow**. Workflow cũng chạy khi thay đổi mã app được push.
-4. Đợi hai nhánh `health` và `sideload` hoàn tất. Bản Health chạy unit tests trên simulator trước khi build thiết bị.
-5. Mở run → **Artifacts** → tải `StepTrack-sideload-unsigned` hoặc `StepTrack-health-unsigned` → giải nén ZIP để lấy IPA.
+1. Mở repo → Actions → Build iPhone IPA → Run workflow. Workflow cũng chạy khi push mã app.
+2. Đợi kiểm thử và build hoàn tất.
+3. Tải artifact `StepTrack-sideload-unsigned`, giải nén ZIP để lấy IPA.
 
-Không cần đưa Apple ID, mật khẩu hay certificate lên GitHub cho workflow này. Nó build không ký; bản Health có chữ ký ad-hoc cục bộ chỉ để giữ danh sách entitlement cho công cụ ký lại, không phải chữ ký có thể cài lên iPhone.
+Workflow dùng macOS, XcodeGen và Xcode; không cần cung cấp Apple ID hay mật khẩu cho GitHub. IPA chưa được ký để cài trực tiếp. Bản hiện tại chỉ dùng cảm biến Motion, không có HealthKit/widget.
 
-Runner: `macos-15`, Xcode mặc định của runner, iOS deployment target 17.0, Swift 5, không có thư viện app bên thứ ba. XcodeGen tạo dự án từ `project.yml` / `project-sideload.yml`. IPA build cho thiết bị thật, không phải simulator. Khi GitHub thay Xcode mặc định, xem log để biết phiên bản thực tế.
+## Cài hoặc cập nhật
 
-## Cài bằng Sideloadly trên Windows
+1. Mở Sideloadly, kết nối iPhone và kéo IPA vào.
+2. Giữ cùng Apple ID và Bundle ID của bản sideload đang dùng để cập nhật đè. Không gỡ app trước, vì lịch sử lưu cục bộ sẽ mất.
+3. Ký và cài như bản trước. Nếu iOS yêu cầu, bật Chế độ nhà phát triển và tin cậy nhà phát triển trong Cài đặt.
+4. Lần đầu: mở Step Track → Kết nối → cho phép Chuyển động & thể chất. Mở lại app hoặc kéo xuống để cập nhật số bước.
 
-1. Dùng Sideloadly từ [sideloadly.io](https://sideloadly.io/), kết nối iPhone qua USB, chọn Trust trên iPhone.
-2. Kéo `StepTrack-sideload-unsigned.ipa` vào Sideloadly, chọn iPhone và Apple ID, bấm Start. Giữ cùng Apple ID/Bundle ID khi cập nhật để tránh cài thành app mới.
-3. Nếu iOS yêu cầu: bật **Cài đặt → Quyền riêng tư & Bảo mật → Chế độ nhà phát triển**, rồi khởi động lại và xác nhận. Tin cậy nhà phát triển ở **Cài đặt → Cài đặt chung → VPN & Quản lý thiết bị** khi được yêu cầu.
-4. Mở Step Track → **Kết nối** → cho phép Chuyển động & thể chất. Mang iPhone đi bộ rồi mở lại app hoặc kéo xuống để cập nhật.
-5. Apple ID miễn phí thường cần ký lại sau 7 ngày. Bật tự gia hạn của Sideloadly nếu muốn; máy tính cần thấy điện thoại qua USB/Wi-Fi.
+## Giao diện
 
-## Cấu hình bản Health + widget
+Thanh nổi chỉ có icon Nhà / Lịch / Bánh răng. Chọn ngôn ngữ và mục tiêu trong tab Cài đặt. Tab Thống kê có tháng/năm, 12 tháng xếp 4 hàng × 3 cột và tổng số bước ở góc phải. Chạm ngày để xem bước và mục tiêu ngày đó; chạm tháng trong bảng năm để mở tháng.
 
-- Đổi `APP_BUNDLE_ID` và `APP_GROUP_ID` trong `project.yml` thành định danh riêng của bạn. Ví dụ `com.tenban.steptrack` và `group.com.tenban.steptrack`.
-- Đăng ký app và extension `.widget`. Bật HealthKit + Background Delivery cho app. Cả app và widget cùng có App Group chính xác. Không cần Clinical Health Records.
-- Dùng certificate/profile tương thích, ký extension trước rồi app; công cụ ký phải giữ extension và các entitlement hợp lệ. Không chỉ đổi tên Bundle ID trong IPA mà bỏ qua App Group.
-- Mở app → Kết nối → cho phép **Số bước** và **Quãng đường đi bộ + chạy**. Dữ liệu không xuất hiện tức thì nếu thiết bị khóa hoặc chưa đồng bộ.
-- Thêm widget qua màn hình chính → nhấn giữ → Sửa → Thêm tiện ích → Step Track. Nếu widget báo cần kiểm tra, xem mục Widget trong Cài đặt của app.
-- Widget đọc bản lưu chung; HealthKit observer yêu cầu cập nhật nền tối đa theo nhịp giờ và app cập nhật khi mở/kéo xuống. iOS quản lý lịch chạy, không đảm bảo thời gian thực. Sau nửa đêm widget không dùng số bước hôm qua làm số bước hôm nay.
+Mục tiêu thay đổi áp dụng từ hôm nay. Ngày đã qua giữ mục tiêu cũ. Những ngày từ bản trước chưa ghi lại mục tiêu sẽ hiển thị chưa lưu mục tiêu, không suy đoán bằng mục tiêu hiện tại.
 
-## Kiểm tra trên thiết bị trước khi dùng hàng ngày
+## Lưu dữ liệu
 
-- Kết nối, cấp một phần quyền, từ chối quyền, rồi bật lại trong Sức khỏe. Không coi màn hình xin quyền hoàn tất là đã được phép đọc.
-- So sánh số bước theo ngày với Apple Health; nếu có Apple Watch, không cộng tay hai nguồn.
-- Quãng đường chưa có dữ liệu phải là `—`, không giả số liệu.
-- Mở lại sau khóa máy, qua nửa đêm, đổi múi giờ; kéo cập nhật nhiều lần không nhân đôi lịch sử.
-- Đổi mục tiêu, kiểm tra app + widget; thử chế độ sáng/tối, cỡ chữ lớn và VoiceOver.
-- Tắt đọc/xóa bản lưu: widget phải chuyển về trạng thái chưa kết nối; dữ liệu gốc trong Health vẫn còn. Thu hồi quyền hệ thống trong Health riêng nếu muốn.
-- Bản Motion chỉ có dữ liệu tối đa 7 ngày và không gồm bước từ Watch. Khi iPhone không được mang theo, bước đó không có trong bản Motion.
+Lịch sử được lưu lâu dài trên iPhone. Motion chỉ cho truy vấn khoảng 7 ngày gần nhất nên hãy mở app vài ngày một lần để bổ sung dữ liệu. Ngày quá cũ chưa được lưu không thể phục hồi; tổng tháng/năm phản ánh dữ liệu đã lưu. Không mang iPhone thì Motion không có bước đó; dữ liệu Watch không được nhập.
 
-## Nguồn
+Xóa app hoặc chọn xóa lịch sử sẽ xóa bản lưu cục bộ. Không có đồng bộ tài khoản hay máy chủ.
 
-- [Steps — Brittany Rima, MIT](https://github.com/brittanyarima/Steps)
-- [HealthKit authorization](https://developer.apple.com/documentation/healthkit/authorizing-access-to-health-data)
-- [Configuring HealthKit](https://developer.apple.com/documentation/xcode/configuring-healthkit-access)
-- [Widget refresh](https://developer.apple.com/documentation/widgetkit/keeping-a-widget-up-to-date)
-- [Core Motion: giới hạn lịch sử](https://developer.apple.com/documentation/coremotion/cmpedometer/querypedometerdata(from:to:withhandler:))
-- [Sideloadly FAQ](https://sideloadly.io/faq.html)
-- [GitHub hosted runners](https://docs.github.com/en/actions/reference/runners/github-hosted-runners): runner tiêu chuẩn miễn phí cho repo công khai; repo riêng chịu hạn mức/tính phí theo tài khoản.
+## Kiểm thử
 
-
-## Sideload: lịch sử và điều hướng
-
-Bản Motion hiện có thanh điều hướng nổi chỉ dùng icon: Trang chủ, Thống kê, Cài đặt. Thống kê có lịch tháng và 12 tháng xếp 4 hàng × 3 cột, tổng bước ở góc phải. Ngày đạt mục tiêu được tô xanh.
-
-Mục tiêu thay đổi áp dụng cho hôm nay và các ngày tiếp theo; mục tiêu của ngày đã qua được giữ nguyên. Dữ liệu từ bản cũ chưa lưu mục tiêu lịch sử được đánh dấu chưa biết, không gán mục tiêu hiện tại ngược về quá khứ.
-
-Lịch sử được lưu lâu dài trên iPhone, không tự xóa sau 7 ngày. Tuy nhiên Motion chỉ cho truy vấn khoảng 7 ngày gần nhất, nên cần mở app vài ngày một lần để bổ sung lịch sử. Khoảng trống quá cũ không thể khôi phục; tổng tháng/năm là tổng dữ liệu đã lưu. Gỡ app hoặc chọn xóa lịch sử sẽ mất dữ liệu cục bộ. Khi cập nhật bằng Sideloadly, giữ cùng Apple ID và bundle ID, không gỡ bản đang dùng trước.
-
-Workflow hiện kiểm thử và xuất `StepTrack-sideload-unsigned.ipa` (không cần HealthKit hay widget).
+Workflow kiểm tra tổng theo ngày, qua nửa đêm, mục tiêu ngày cũ, lưu/đọc lịch sử, lịch năm nhuận, điều hướng, lịch tháng/năm và đổi ba ngôn ngữ. Ảnh chụp mô phỏng iPhone 11 được xuất ở artifact `interface-screenshots`. Cảm biến và ký bằng Sideloadly vẫn cần kiểm tra trên iPhone thật.

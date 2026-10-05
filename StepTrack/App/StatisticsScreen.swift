@@ -41,6 +41,7 @@ struct StatisticsScreen: View {
                 .padding(20)
             }
             .background(Color(.systemGroupedBackground))
+            .contentMargins(.bottom, 86, for: .scrollContent)
             .toolbar(.hidden, for: .navigationBar)
             .refreshable { await activity.refresh() }
             .environment(\.locale, Locale(identifier: language))
@@ -48,7 +49,7 @@ struct StatisticsScreen: View {
     }
 
     private var calendarCard: some View {
-        VStack(alignment: .leading, spacing: 22) {
+        VStack(alignment: .leading, spacing: 18) {
             HStack(alignment: .top, spacing: 12) {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(periodTitle).font(.headline).accessibilityIdentifier("statisticsHeading")
@@ -77,7 +78,7 @@ struct StatisticsScreen: View {
                     selectedDay = HistoryCalendar.key(for: date)
                 }
             } else {
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 3), spacing: 22) {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 3), spacing: 16) {
                     ForEach(months, id: \.self) { date in
                         Button {
                             anchor = date
@@ -98,12 +99,6 @@ struct StatisticsScreen: View {
                 legend("Goal reached", fill: TrackStyle.green)
             }
             .font(.system(size: 10)).foregroundStyle(.secondary)
-            HStack {
-                Text(Copy.text("Goal days")).foregroundStyle(.secondary)
-                Spacer()
-                Text(Copy.number(records.filter(\.reachedGoal).count))
-                    .fontWeight(.semibold).foregroundStyle(TrackStyle.green)
-            }.font(.subheadline)
         }.card()
     }
 
@@ -221,7 +216,7 @@ private struct MiniMonthView: View {
                         Color.clear.aspectRatio(1, contentMode: .fit)
                     }
                 }
-            }
+            }.frame(maxWidth: 88)
         }
         .accessibilityElement(children: .ignore)
     }

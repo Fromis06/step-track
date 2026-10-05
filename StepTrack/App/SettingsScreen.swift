@@ -53,6 +53,7 @@ struct SettingsScreen: View {
                 }
             }
             .navigationTitle(Copy.text("Settings"))
+            .contentMargins(.bottom, 86, for: .scrollContent)
             .confirmationDialog(Copy.text("Clear all saved history and disconnect?"), isPresented: $confirmDisconnect, titleVisibility: .visible) {
                 Button(Copy.text("Disconnect and clear"), role: .destructive) { activity.disconnect() }
             }

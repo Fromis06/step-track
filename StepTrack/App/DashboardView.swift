@@ -34,6 +34,7 @@ struct DashboardView: View {
                 .padding(20)
             }
             .background(Color(.systemGroupedBackground))
+            .contentMargins(.bottom, 86, for: .scrollContent)
             .toolbar(.hidden, for: .navigationBar)
             .refreshable { await activity.refresh() }
 

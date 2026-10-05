@@ -10,10 +10,8 @@ enum TrackStyle {
 
 struct DashboardView: View {
     @EnvironmentObject private var activity: ActivityStore
-    @State private var showSettings = false
     @State private var period = 7
     @AppStorage("appLanguage", store: ActivityStorage.defaults) private var language = "vi"
-    private let pulse = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
 
     private var records: [ActivityDay] { Array(activity.snapshot.days.suffix(period)) }
 
@@ -38,15 +36,7 @@ struct DashboardView: View {
             .background(Color(.systemGroupedBackground))
             .toolbar(.hidden, for: .navigationBar)
             .refreshable { await activity.refresh() }
-            .sheet(isPresented: $showSettings) { SettingsScreen() }
-            .environment(\.locale, Locale(identifier: language))
-            .onReceive(pulse) { _ in Task { await activity.refresh() } }
-            .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in
-                Task { await activity.refresh() }
-            }
-            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name.NSSystemTimeZoneDidChange)) { _ in
-                Task { await activity.refresh() }
-            }
+
         }
     }
 
@@ -59,13 +49,7 @@ struct DashboardView: View {
                     .font(.title2.weight(.bold)).tracking(-0.7)
             }
             Spacer(minLength: 10)
-            Button { showSettings = true } label: {
-                Image(systemName: "slider.horizontal.3")
-                    .font(.title3).frame(width: 46, height: 46)
-                    .background(Color(.secondarySystemGroupedBackground), in: Circle())
-            }
-            .accessibilityLabel(Copy.text("Settings and goal"))
-            .accessibilityIdentifier("settingsButton")
+
         }
     }
 
@@ -171,9 +155,7 @@ struct DashboardView: View {
                         .foregroundStyle(Calendar.current.isDateInToday(record.date) ? TrackStyle.green : TrackStyle.green.opacity(0.3))
                         .accessibilityLabel(record.date.formatted(.dateTime.day().month().locale(Copy.locale)))
                         .accessibilityValue(Copy.format("%@ steps", Copy.number(record.steps)))
-                    RuleMark(y: .value(Copy.text("Goal"), activity.goal))
-                        .foregroundStyle(TrackStyle.green.opacity(0.35))
-                        .lineStyle(StrokeStyle(lineWidth: 1, dash: [4, 4]))
+
                 }
                 .chartYAxis { AxisMarks(position: .leading) }
                 .chartXAxis {
@@ -191,7 +173,7 @@ struct DashboardView: View {
                     Spacer()
                     VStack(alignment: .trailing, spacing: 4) {
                         Text(Copy.text("GOAL DAYS")).font(.caption2.weight(.semibold)).foregroundStyle(.secondary)
-                        Text("\(records.filter { $0.steps >= activity.goal }.count) / \(records.count)")
+                        Text("\(records.filter { activity.history.days[HistoryCalendar.key(for: $0.date)]?.reachedGoal == true }.count) / \(records.count)")
                             .font(.title2.weight(.bold)).foregroundStyle(TrackStyle.green)
                     }
                 }
@@ -217,106 +199,8 @@ struct DashboardView: View {
     }
 }
 
-private struct SettingsScreen: View {
-    @EnvironmentObject private var activity: ActivityStore
-    @Environment(\.dismiss) private var dismiss
-    @Environment(\.openURL) private var openURL
-    @State private var confirmDisconnect = false
-    @AppStorage("appLanguage", store: ActivityStorage.defaults) private var language = "vi"
 
-    var body: some View {
-        NavigationStack {
-            Form {
-                Section(Copy.text("Language")) {
-                    Picker(Copy.text("Language"), selection: $language) {
-                        ForEach(AppLanguage.allCases) { item in
-                            Text(item.name).tag(item.rawValue)
-                        }
-                    }
-                    .pickerStyle(.menu)
-                    .accessibilityIdentifier("languagePicker")
-                }
-                Section(Copy.text("Daily goal")) {
-                    Text(Copy.format("%@ steps", Copy.number(activity.goal))).font(.largeTitle.bold()).foregroundStyle(TrackStyle.green)
-                    Stepper(Copy.text("Adjust by 500 steps"), value: $activity.goal, in: 500...50_000, step: 500)
-                    HStack {
-                        ForEach([6_000, 8_000, 10_000], id: \.self) { goal in
-                            Button(Copy.number(goal)) { activity.goal = goal }
-                                .buttonStyle(.bordered).frame(maxWidth: .infinity)
-                        }
-                    }
-                }
-                Section(Copy.text("Data source")) {
-                    Label(activity.sourceName, systemImage: "heart.text.square")
-                    if !activity.enabled {
-                        Button(Copy.text("Connect data")) { Task { await activity.connect() } }.disabled(activity.loading)
-                    }
-                    Text(ActivityStore.motionOnly
-                         ? Copy.text("iPhone sensor · 7 days. Does not include Apple Watch or sync with Health.")
-                         : Copy.text("Read-only. Manage access in Health → profile → Apps → Step Track."))
-                        .font(.footnote).foregroundStyle(.secondary)
-                    Button(Copy.text("Open Settings")) { openURL(URL(string: UIApplication.openSettingsURLString)!) }
-                }
-                Section(Copy.text("Widgets")) {
-                    Text(ActivityStore.motionOnly
-                         ? Copy.text("Available in the Health build with valid App Groups signing.")
-                         : Copy.text("Hold Home Screen → Edit → Add Widget → Step Track."))
-                    if !ActivityStore.motionOnly && ActivityStorage.sharedDefaults == nil {
-                        Label(Copy.text("Shared data unavailable. Check App Groups signing."), systemImage: "exclamationmark.triangle")
-                            .foregroundStyle(.orange)
-                    }
-                    Text(Copy.text("iOS controls refresh timing. Updates are not instant."))
-                        .font(.footnote).foregroundStyle(.secondary)
-                }
-                Section(Copy.text("Privacy")) {
-                    Text(Copy.text("No account, ads, or health data uploads."))
-                    if activity.enabled {
-                        Button(Copy.text("Disconnect and clear saved data"), role: .destructive) { confirmDisconnect = true }
-                    }
-                }
-                if !ActivityStore.motionOnly {
-                    Section {
-                        DisclosureGroup(Copy.text("Connection check")) {
-                            let status = SigningStatus.current
-                            LabeledContent("HealthKit", value: Copy.text(status.healthKitInProfile.map { $0 ? "In signing profile" : "Missing from signing profile" } ?? "Profile not readable"))
-                            LabeledContent(Copy.text("Widgets"), value: Copy.text(status.widgetIncluded ? "Included in app" : "Removed from app"))
-                            LabeledContent("App Group", value: Copy.text(status.sharedContainerAvailable ? "Accessible" : "Unavailable"))
-                            if let error = activity.connectionDiagnostic {
-                                Text(error).font(.caption).textSelection(.enabled)
-                            }
-                            ShareLink(item: diagnosticReport(status)) {
-                                Label(Copy.text("Share diagnostics"), systemImage: "square.and.arrow.up")
-                            }
-                        }
-                    }
-                }
-                Section("Step Track") {
-                    Text(Copy.text("Based on Steps by Brittany Rima & contributors · MIT. Independent version."))
-                        .font(.footnote).foregroundStyle(.secondary)
-                }
-            }
-            .navigationTitle(Copy.text("Settings"))
-            .onChange(of: language) { _, _ in WidgetCenter.shared.reloadAllTimelines() }
-            .toolbar { ToolbarItem(placement: .confirmationAction) { Button(Copy.text("Done")) { dismiss() } } }
-            .confirmationDialog(Copy.text("Disconnect and clear saved data? Your original Health data stays intact."), isPresented: $confirmDisconnect, titleVisibility: .visible) {
-                Button(Copy.text("Disconnect and clear"), role: .destructive) { activity.disconnect() }
-            }
-        }
-    }
-
-    private func diagnosticReport(_ status: SigningStatus) -> String {
-        [
-            "Step Track \(Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?")",
-            "Bundle: \(Bundle.main.bundleIdentifier ?? "?")",
-            "HealthKit in profile: \(status.healthKitInProfile.map { String($0) } ?? "unknown")",
-            "Widget included: \(status.widgetIncluded)",
-            "App Group accessible: \(status.sharedContainerAvailable)",
-            "Connection error: \(activity.connectionDiagnostic ?? "none")"
-        ].joined(separator: "\n")
-    }
-}
-
-private extension View {
+extension View {
     func card() -> some View {
         padding(20).background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 24))
     }

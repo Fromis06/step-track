@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        flavor: [health, sideload]
+        flavor: [sideload]
     steps:
       - uses: actions/checkout@v4
       - name: Install project generator
@@ -31,12 +31,13 @@ jobs:
           else
             xcodegen generate --spec project-sideload.yml
           fi
-      - name: Test daily totals and midnight rollover
-        if: matrix.flavor == 'health'
+      - name: Test history, navigation and languages
+        if: matrix.flavor == 'sideload'
         run: |
           set -o pipefail
-          DEVICE_ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin); print(next(x["udid"] for group in d["devices"].values() for x in group if x["name"].startswith("iPhone")))')
-          xcodebuild test -project StepTrack.xcodeproj -scheme StepTrack \
+          RUNTIME=$(xcrun simctl list runtimes -j | python3 -c 'import json,sys; print(next(r["identifier"] for r in json.load(sys.stdin)["runtimes"] if r["isAvailable"] and "iOS" in r["name"]))')
+          DEVICE_ID=$(xcrun simctl create 'Step Track iPhone 11' com.apple.CoreSimulator.SimDeviceType.iPhone-11 "$RUNTIME")
+          xcodebuild test -project StepTrackSideload.xcodeproj -scheme StepTrack \
             -destination "platform=iOS Simulator,id=$DEVICE_ID" \
             -resultBundlePath build/Tests.xcresult \
             CODE_SIGNING_ALLOWED=NO | tee test.log
@@ -53,13 +54,13 @@ jobs:
             CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
             CURRENT_PROJECT_VERSION="$GITHUB_RUN_NUMBER" | tee build.log
       - name: Export interface screenshots
-        if: matrix.flavor == 'health' && always()
+        if: matrix.flavor == 'sideload' && always()
         run: |
           if [ -d build/Tests.xcresult ]; then
             xcrun xcresulttool export attachments --path build/Tests.xcresult --output-path build/screenshots
           fi
       - name: Upload interface screenshots
-        if: matrix.flavor == 'health' && always()
+        if: matrix.flavor == 'sideload' && always()
         uses: actions/upload-artifact@v4
         with:
           name: interface-screenshots

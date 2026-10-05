@@ -40,8 +40,8 @@
     "ja": "歩"
   },
   "Goal reached": {
-    "vi": "Đã đạt mục tiêu",
-    "ja": "目標達成"
+    "vi": "Đạt mốc",
+    "ja": "達成"
   },
   "Distance": {
     "vi": "Quãng đường",
@@ -164,8 +164,8 @@
     "ja": "アカウント・広告・健康データの送信はありません。"
   },
   "Disconnect and clear saved data": {
-    "vi": "Ngừng đọc & xóa bản lưu trong app",
-    "ja": "連携を解除して保存データを削除"
+    "vi": "Ngắt kết nối và xóa lịch sử",
+    "ja": "接続解除と履歴の削除"
   },
   "Based on Steps by Brittany Rima & contributors · MIT. Independent version.": {
     "vi": "Tham khảo Steps của Brittany Rima và cộng đồng · MIT License. Đây là bản tùy biến độc lập.",
@@ -294,5 +294,85 @@
   "Share diagnostics": {
     "vi": "Chia sẻ kết quả",
     "ja": "診断結果を共有"
+  },
+  "Home": {
+    "vi": "Trang chủ",
+    "ja": "ホーム"
+  },
+  "Statistics": {
+    "vi": "Thống kê",
+    "ja": "統計"
+  },
+  "Month": {
+    "vi": "Tháng",
+    "ja": "月"
+  },
+  "Year": {
+    "vi": "Năm",
+    "ja": "年"
+  },
+  "Previous period": {
+    "vi": "Kỳ trước",
+    "ja": "前の期間"
+  },
+  "Next period": {
+    "vi": "Kỳ sau",
+    "ja": "次の期間"
+  },
+  "Total steps": {
+    "vi": "Tổng bước",
+    "ja": "合計歩数"
+  },
+  "No data": {
+    "vi": "Chưa có",
+    "ja": "データなし"
+  },
+  "Below goal": {
+    "vi": "Chưa đạt",
+    "ja": "未達成"
+  },
+  "Goal days": {
+    "vi": "Ngày đạt mốc",
+    "ja": "達成日数"
+  },
+  "Goal: %@": {
+    "vi": "Mục tiêu: %@",
+    "ja": "目標: %@"
+  },
+  "Goal not recorded": {
+    "vi": "Chưa lưu mục tiêu",
+    "ja": "目標の記録なし"
+  },
+  "Partial day": {
+    "vi": "Chưa đủ dữ liệu ngày",
+    "ja": "一部の記録のみ"
+  },
+  "Changes apply to today and future days.": {
+    "vi": "Áp dụng từ hôm nay.",
+    "ja": "今日から適用。"
+  },
+  "History": {
+    "vi": "Lịch sử",
+    "ja": "履歴"
+  },
+  "Saved days": {
+    "vi": "Ngày đã lưu",
+    "ja": "記録日数"
+  },
+  "History stays on this iPhone. Open the app every few days to avoid gaps.": {
+    "vi": "Lưu trên iPhone. Mở app vài ngày một lần để lưu đủ dữ liệu.",
+    "ja": "履歴はこのiPhoneに保存。数日ごとに開いて記録を更新。"
+  },
+  "Clear all saved history and disconnect?": {
+    "vi": "Xóa toàn bộ lịch sử và ngắt kết nối?",
+    "ja": "すべての履歴を削除して接続を解除しますか？"
+  },
+  "History could not be opened. Saved data has not been replaced.": {
+    "vi": "Không mở được lịch sử. Dữ liệu cũ vẫn được giữ.",
+    "ja": "履歴を開けません。保存済みデータは保持されています。"
+  },
+  "Could not save history. Please try again.": {
+    "vi": "Chưa lưu được lịch sử. Hãy thử lại.",
+    "ja": "履歴を保存できません。もう一度お試しください。"
   }
 }

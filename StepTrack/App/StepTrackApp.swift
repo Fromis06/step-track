@@ -8,7 +8,7 @@ struct StepTrackApp: App {
 
     var body: some Scene {
         WindowGroup {
-            DashboardView()
+            AppShell()
                 .environmentObject(activity)
                 .tint(TrackStyle.green)
                 .environment(\.locale, locale)

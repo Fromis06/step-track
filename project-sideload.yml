@@ -31,8 +31,31 @@ targets:
         NSMotionUsageDescription: Step Track đọc bước chân và quãng đường từ cảm biến iPhone để hiển thị hoạt động của bạn.
         UILaunchScreen: {}
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+  StepTrackTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [StepTrack/Tests]
+    dependencies:
+      - target: StepTrack
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).tests
+  StepTrackUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [StepTrack/UITests]
+    dependencies:
+      - target: StepTrack
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).uitests
+        TEST_TARGET_NAME: StepTrack
 schemes:
   StepTrack:
     build:
       targets:
         StepTrack: all
+    test:
+      targets: [StepTrackTests, StepTrackUITests]

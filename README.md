@@ -46,3 +46,14 @@ open StepTrackSideload.xcodeproj
 Được khởi tạo bằng clone [brittanyarima/Steps](https://github.com/brittanyarima/Steps), commit `e395cdd`, giấy phép MIT. Giữ nguyên [LICENSE](LICENSE) và [README gốc](README.upstream.md).
 
 Bản tùy biến triển khai app trong `StepTrack/`, tham khảo SwiftUI/HealthKit/WidgetKit của dự án gốc. Các thư mục `Steps/`, `StepsWidget/`, `StepsTests/` và `Steps.xcodeproj` giữ làm nguồn tham khảo upstream, **không nằm trong build mới**. Mở dự án `StepTrack.xcodeproj` do XcodeGen sinh ra để làm việc với bản mới. Không có quan hệ phát hành với tác giả gốc.
+
+
+## Sideload: lịch sử và điều hướng
+
+Bản Motion hiện có thanh điều hướng nổi chỉ dùng icon: Trang chủ, Thống kê, Cài đặt. Thống kê có lịch tháng và 12 tháng xếp 4 hàng × 3 cột, tổng bước ở góc phải. Ngày đạt mục tiêu được tô xanh.
+
+Mục tiêu thay đổi áp dụng cho hôm nay và các ngày tiếp theo; mục tiêu của ngày đã qua được giữ nguyên. Dữ liệu từ bản cũ chưa lưu mục tiêu lịch sử được đánh dấu chưa biết, không gán mục tiêu hiện tại ngược về quá khứ.
+
+Lịch sử được lưu lâu dài trên iPhone, không tự xóa sau 7 ngày. Tuy nhiên Motion chỉ cho truy vấn khoảng 7 ngày gần nhất, nên cần mở app vài ngày một lần để bổ sung lịch sử. Khoảng trống quá cũ không thể khôi phục; tổng tháng/năm là tổng dữ liệu đã lưu. Gỡ app hoặc chọn xóa lịch sử sẽ mất dữ liệu cục bộ. Khi cập nhật bằng Sideloadly, giữ cùng Apple ID và bundle ID, không gỡ bản đang dùng trước.
+
+Workflow hiện kiểm thử và xuất `StepTrack-sideload-unsigned.ipa` (không cần HealthKit hay widget).

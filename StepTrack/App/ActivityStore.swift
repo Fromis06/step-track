@@ -9,15 +9,10 @@ final class ActivityStore: ObservableObject {
     @Published private(set) var loading = false
     @Published private(set) var message: String?
     @Published private(set) var connectionDiagnostic: String?
+    @Published private(set) var history = ActivityHistory()
+    @Published private(set) var historyMessage: String?
     @Published private(set) var enabled = UserDefaults.standard.bool(forKey: "trackingEnabled")
-    @Published var goal = ActivityStorage.goal {
-        didSet {
-            ActivityStorage.goal = goal
-            snapshot.goal = goal
-            ActivityStorage.save(snapshot)
-            WidgetCenter.shared.reloadAllTimelines()
-        }
-    }
+    @Published private(set) var goal = ActivityStorage.goal
 
     private let health = HKHealthStore()
     private let pedometer = CMPedometer()
@@ -25,10 +20,41 @@ final class ActivityStore: ObservableObject {
     private var refreshTask: Task<Void, Never>?
     private var generation = 0
     private var observing = false
+    private var historyWritable = true
 
     init() {
+        do {
+            history = try HistoryStorage.load() ?? ActivityHistory.migrating(snapshot, goal: goal, now: Date())
+            if history.goals.isEmpty { history.changeGoal(goal, on: Date()) }
+            try HistoryStorage.save(history)
+        } catch {
+            historyWritable = false
+            historyMessage = "History could not be opened. Saved data has not been replaced."
+        }
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--ui-fixture") { loadPreviewHistory(); return }
+        #endif
         // Register on launch, including a launch triggered by HealthKit background delivery.
         if enabled && !Self.motionOnly { startHealthObservation() }
+    }
+
+    func setGoal(_ value: Int) {
+        guard historyWritable else { return }
+        var updated = history
+        let target = max(500, min(50_000, value))
+        updated.changeGoal(target, on: Date())
+        do {
+            try HistoryStorage.save(updated)
+            history = updated
+            goal = target
+            ActivityStorage.goal = target
+            snapshot.goal = target
+            ActivityStorage.save(snapshot)
+            historyMessage = nil
+            WidgetCenter.shared.reloadAllTimelines()
+        } catch {
+            historyMessage = "Could not save history. Please try again."
+        }
     }
 
     static var motionOnly: Bool {
@@ -78,12 +104,18 @@ final class ActivityStore: ObservableObject {
     }
 
     func resume() async {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--ui-fixture") { return }
+        #endif
         guard enabled else { return }
         if !Self.motionOnly { startHealthObservation() }
         await refresh()
     }
 
     func refresh() async {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--ui-fixture") { return }
+        #endif
         guard enabled else { return }
         if let refreshTask { await refreshTask.value; return }
         let currentGeneration = generation
@@ -98,7 +130,7 @@ final class ActivityStore: ObservableObject {
         defer { loading = false }
         do {
             let now = Date()
-            let calendar = Calendar.current
+            let calendar = HistoryCalendar.calendar
             let today = calendar.startOfDay(for: now)
             let days: [ActivityDay]
             let meters: Double?
@@ -121,6 +153,17 @@ final class ActivityStore: ObservableObject {
             guard enabled, expectedGeneration == generation else { return }
             snapshot = ActivitySnapshot(updatedAt: now, days: days, meters: meters, goal: goal)
             ActivityStorage.save(snapshot)
+            if historyWritable {
+                var updated = history
+                updated.merge(days, observedAt: now)
+                do {
+                    try HistoryStorage.save(updated)
+                    history = updated
+                    historyMessage = nil
+                } catch {
+                    historyMessage = "Could not save history. Please try again."
+                }
+            }
             WidgetCenter.shared.reloadAllTimelines()
             message = nil
         } catch {
@@ -131,6 +174,8 @@ final class ActivityStore: ObservableObject {
     }
 
     func disconnect() {
+        do { try HistoryStorage.clear() }
+        catch { historyMessage = "Could not save history. Please try again."; return }
         generation += 1
         enabled = false
         UserDefaults.standard.set(false, forKey: "trackingEnabled")
@@ -144,6 +189,12 @@ final class ActivityStore: ObservableObject {
         snapshot.goal = goal
         message = nil
         ActivityStorage.clear()
+        history = ActivityHistory()
+        history.changeGoal(goal, on: Date())
+        historyWritable = true
+        historyMessage = nil
+        do { try HistoryStorage.save(history) }
+        catch { historyMessage = "Could not save history. Please try again." }
         WidgetCenter.shared.reloadAllTimelines()
     }
 
@@ -209,6 +260,34 @@ final class ActivityStore: ObservableObject {
             }
         }
     }
+
+    #if DEBUG
+    private func loadPreviewHistory() {
+        let calendar = HistoryCalendar.calendar
+        let now = Date()
+        let year = calendar.component(.year, from: now)
+        let start = calendar.date(from: DateComponents(year: year, month: 1, day: 1))!
+        var preview = ActivityHistory()
+        preview.changeGoal(5_000, on: start)
+        let today = calendar.startOfDay(for: now)
+        preview.changeGoal(8_000, on: today)
+        var date = start
+        var index = 0
+        var recent: [ActivityDay] = []
+        while date <= today {
+            let count = date == today ? 6_280 : (index % 5 == 0 ? 3_400 : 5_600 + index % 4 * 850)
+            let sample = ActivityDay(date: date, steps: count)
+            preview.merge([sample], observedAt: now)
+            recent.append(sample)
+            index += 1
+            date = calendar.date(byAdding: .day, value: 1, to: date)!
+        }
+        history = preview
+        goal = 8_000
+        snapshot = ActivitySnapshot(updatedAt: now, days: Array(recent.suffix(7)), meters: 4_180, goal: goal)
+        enabled = true
+    }
+    #endif
 }
 
 private enum ActivityError: LocalizedError {

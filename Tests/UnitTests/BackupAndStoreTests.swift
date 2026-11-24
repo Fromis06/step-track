@@ -72,7 +72,7 @@ final class BackupAndStoreTests: XCTestCase {
                 ExerciseSessionEntry(
                     exerciseID: "0025",
                     exerciseName: "Barbell Bench Press",
-                    sets: [ExerciseSetLog(setNumber: 1, weightKg: 82.5, reps: 5, rpe: 8.5, isCompleted: true, isPersonalRecord: true)]
+                    sets: [ExerciseSetLog(setNumber: 1, weightKg: 82.5, reps: 5, rpe: 8.5, isCompleted: true, isPersonalRecord: true, completedAt: now)]
                 )
             ],
             notes: "Strong lockout"

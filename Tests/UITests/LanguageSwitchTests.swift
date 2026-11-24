@@ -41,8 +41,9 @@ final class LanguageSwitchTests: XCTestCase {
         XCTAssertTrue(yearButton.waitForExistence(timeout: 5))
         yearButton.tap()
 
-        scrollUntilVisible(app.buttons["month-1"], in: app)
+        scrollUntilVisible(app.buttons["month-12"], in: app, maxSwipes: 6)
         for month in 1...12 {
+            scrollUntilVisible(app.buttons["month-\(month)"], in: app, maxSwipes: 3)
             XCTAssertTrue(app.buttons["month-\(month)"].exists)
         }
         screenshot("06-stats-year")

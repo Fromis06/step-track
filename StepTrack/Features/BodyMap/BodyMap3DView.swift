@@ -1,8 +1,6 @@
 import SwiftUI
 import UIKit
 import SceneKit
-import SceneKit.ModelIO
-import ModelIO
 
 struct BodyMap3DView: UIViewRepresentable {
     @Binding var selectedRegion: BodyRegionID?
@@ -44,7 +42,7 @@ struct BodyMap3DView: UIViewRepresentable {
         let cameraNode = SCNNode()
         cameraNode.camera = camera
         cameraNode.position = SCNVector3(0, 0.92, isBackView ? -2.65 : 2.65)
-        cameraNode.look(at: SCNVector3(0, 0.92, 0))
+        cameraNode.eulerAngles = SCNVector3(0, isBackView ? Float.pi : 0, 0)
         scene.rootNode.addChildNode(cameraNode)
         coordinator.cameraNode = cameraNode
 
@@ -72,7 +70,6 @@ struct BodyMap3DView: UIViewRepresentable {
             defaultMuscleColor: defaultMuscleColor,
             cardioColor: cardioColor
         )
-        scnView.prepare([scene], shouldAbortBlock: nil)
 
         return scnView
     }
@@ -99,7 +96,7 @@ struct BodyMap3DView: UIViewRepresentable {
                 SCNTransaction.animationDuration = 0.35
                 scnView.pointOfView = cameraNode
                 cameraNode.position = SCNVector3(0, 0.92, isBackView ? -2.65 : 2.65)
-                cameraNode.look(at: SCNVector3(0, 0.92, 0))
+                cameraNode.eulerAngles = SCNVector3(0, isBackView ? Float.pi : 0, 0)
                 scnView.defaultCameraController.target = SCNVector3(0, 0.92, 0)
                 SCNTransaction.commit()
             }
@@ -108,29 +105,127 @@ struct BodyMap3DView: UIViewRepresentable {
 
     // MARK: - Scene Loading & Lighting
 
-    private static func loadBodyScene() -> SCNScene {
-        let bundles: [Bundle] = [.main, Bundle(for: Coordinator.self)]
-        for bundle in bundles {
-            if let url = bundle.url(forResource: "human_body", withExtension: "obj")
-                ?? bundle.url(forResource: "human_body", withExtension: "obj", subdirectory: "Models3D") {
-                let asset = MDLAsset(url: url)
-                let mdlScene = SCNScene(mdlAsset: asset)
-                var hasGeometry = false
-                mdlScene.rootNode.enumerateChildNodes { node, stop in
-                    if node.geometry != nil {
-                        hasGeometry = true
-                        stop.pointee = true
+    nonisolated static func loadBodyScene(from explicitURL: URL? = nil) -> SCNScene {
+        let resolvedURL: URL? = explicitURL ?? {
+            let bundles: [Bundle] = [.main, Bundle(for: Coordinator.self)]
+            for bundle in bundles {
+                if let url = bundle.url(forResource: "human_body", withExtension: "obj")
+                    ?? bundle.url(forResource: "human_body", withExtension: "obj", subdirectory: "Models3D") {
+                    return url
+                }
+            }
+            return nil
+        }()
+
+        guard let url = resolvedURL,
+              let contents = try? String(contentsOf: url, encoding: .utf8) else {
+            return SCNScene()
+        }
+
+        var globalVertices: [SCNVector3] = []
+        var globalNormals: [SCNVector3] = []
+        globalVertices.reserveCapacity(2800)
+        globalNormals.reserveCapacity(2800)
+
+        struct GroupBuilder {
+            let name: String
+            var vertices: [SCNVector3] = []
+            var normals: [SCNVector3] = []
+            var indices: [UInt32] = []
+            var pairToLocal: [UInt64: UInt32] = [:]
+        }
+
+        var groups: [GroupBuilder] = []
+        var currentGroup = GroupBuilder(name: "body")
+
+        for rawLine in contents.split(whereSeparator: \.isNewline) {
+            let line = rawLine.trimmingCharacters(in: .whitespaces)
+            if line.isEmpty || line.hasPrefix("#") { continue }
+
+            if line.hasPrefix("o ") {
+                if !currentGroup.indices.isEmpty {
+                    groups.append(currentGroup)
+                }
+                let groupName = String(line.dropFirst(2)).trimmingCharacters(in: .whitespaces)
+                currentGroup = GroupBuilder(name: groupName)
+            } else if line.hasPrefix("v ") {
+                let parts = line.split(whereSeparator: \.isWhitespace)
+                if parts.count >= 4,
+                   let x = Float(parts[1]),
+                   let y = Float(parts[2]),
+                   let z = Float(parts[3]) {
+                    globalVertices.append(SCNVector3(x, y, z))
+                }
+            } else if line.hasPrefix("vn ") {
+                let parts = line.split(whereSeparator: \.isWhitespace)
+                if parts.count >= 4,
+                   let x = Float(parts[1]),
+                   let y = Float(parts[2]),
+                   let z = Float(parts[3]) {
+                    globalNormals.append(SCNVector3(x, y, z))
+                }
+            } else if line.hasPrefix("f ") {
+                let parts = line.split(whereSeparator: \.isWhitespace)
+                guard parts.count >= 4 else { continue }
+                var faceLocalIndices: [UInt32] = []
+                faceLocalIndices.reserveCapacity(parts.count - 1)
+
+                for token in parts.dropFirst() {
+                    let sub = token.split(separator: "/", omittingEmptySubsequences: false)
+                    guard let vIdx1 = sub.first.flatMap({ Int($0) }),
+                          vIdx1 >= 1, vIdx1 <= globalVertices.count else { continue }
+                    let vnIdx1: Int
+                    if sub.count >= 3, let parsedVN = Int(sub[2]), parsedVN >= 1, parsedVN <= globalNormals.count {
+                        vnIdx1 = parsedVN
+                    } else {
+                        vnIdx1 = 0
+                    }
+
+                    let key = (UInt64(vIdx1) << 32) | UInt64(vnIdx1)
+                    if let existing = currentGroup.pairToLocal[key] {
+                        faceLocalIndices.append(existing)
+                    } else {
+                        let localIdx = UInt32(currentGroup.vertices.count)
+                        currentGroup.vertices.append(globalVertices[vIdx1 - 1])
+                        if vnIdx1 >= 1 {
+                            currentGroup.normals.append(globalNormals[vnIdx1 - 1])
+                        } else {
+                            currentGroup.normals.append(SCNVector3(0, 0, 1))
+                        }
+                        currentGroup.pairToLocal[key] = localIdx
+                        faceLocalIndices.append(localIdx)
                     }
                 }
-                if hasGeometry {
-                    return mdlScene
-                }
-                if let directScene = try? SCNScene(url: url, options: nil) {
-                    return directScene
+
+                if faceLocalIndices.count >= 3 {
+                    for i in 1..<(faceLocalIndices.count - 1) {
+                        currentGroup.indices.append(faceLocalIndices[0])
+                        currentGroup.indices.append(faceLocalIndices[i])
+                        currentGroup.indices.append(faceLocalIndices[i + 1])
+                    }
                 }
             }
         }
-        return SCNScene()
+        if !currentGroup.indices.isEmpty {
+            groups.append(currentGroup)
+        }
+
+        let scene = SCNScene()
+        for group in groups {
+            let vertexSource = SCNGeometrySource(vertices: group.vertices)
+            let normalSource = SCNGeometrySource(normals: group.normals)
+            let element = SCNGeometryElement(indices: group.indices, primitiveType: .triangles)
+            let geometry = SCNGeometry(sources: [vertexSource, normalSource], elements: [element])
+            let material = SCNMaterial()
+            material.lightingModel = .blinn
+            material.isDoubleSided = true
+            geometry.materials = [material]
+
+            let node = SCNNode(geometry: geometry)
+            node.name = group.name
+            scene.rootNode.addChildNode(node)
+        }
+        return scene
     }
 
     private static func attachLighting(to rootNode: SCNNode) {
@@ -218,9 +313,11 @@ struct BodyMap3DView: UIViewRepresentable {
 
             for node in structuralNodes {
                 for material in node.geometry?.materials ?? [] {
+                    material.lightingModel = .blinn
                     material.diffuse.contents = structuralUI
+                    material.specular.contents = UIColor(white: 0.18, alpha: 1.0)
+                    material.shininess = 0.15
                     material.emission.contents = UIColor.black
-                    material.roughness.contents = 0.72
                 }
             }
 
@@ -229,9 +326,11 @@ struct BodyMap3DView: UIViewRepresentable {
                 let baseColor = (region == .cardio) ? cardioUI : muscleUI
                 for node in nodes {
                     for material in node.geometry?.materials ?? [] {
+                        material.lightingModel = .blinn
                         material.diffuse.contents = isSelected ? accentUI : baseColor
+                        material.specular.contents = UIColor(white: isSelected ? 0.45 : 0.25, alpha: 1.0)
+                        material.shininess = isSelected ? 0.45 : 0.25
                         material.emission.contents = isSelected ? accentUI.withAlphaComponent(0.32) : UIColor.black
-                        material.roughness.contents = isSelected ? 0.35 : 0.55
                     }
                 }
             }

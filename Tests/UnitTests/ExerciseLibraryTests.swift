@@ -1,7 +1,5 @@
 import XCTest
 import SceneKit
-import SceneKit.ModelIO
-import ModelIO
 @testable import StepTrack
 
 final class ExerciseLibraryTests: XCTestCase {
@@ -47,13 +45,14 @@ final class ExerciseLibraryTests: XCTestCase {
             XCTAssertNil(BodyRegionID(rawValue: structural))
         }
 
-        let scene = SCNScene(mdlAsset: MDLAsset(url: objURL))
+        let scene = BodyMap3DView.loadBodyScene(from: objURL)
         var nodeNames: Set<String> = []
         scene.rootNode.enumerateChildNodes { node, _ in
-            if let name = node.name, !name.isEmpty {
+            if let name = node.name, !name.isEmpty, node.geometry != nil {
                 nodeNames.insert(name)
             }
         }
+        XCTAssertEqual(nodeNames.count, 19)
         for region in BodyRegionID.allCases {
             XCTAssertTrue(nodeNames.contains(region.rawValue), "Missing 3D node \(region.rawValue) in \(nodeNames)")
         }

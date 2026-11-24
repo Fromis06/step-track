@@ -407,6 +407,13 @@ def _compute_vertex_normals(verts: list[tuple[float, float, float]], tris: list[
     return [_normalize((n[0], n[1], n[2])) for n in accum]
 
 
+def _fmt(val: float) -> str:
+    rounded = round(val, 5)
+    if rounded == 0.0:
+        rounded = 0.0
+    return f"{rounded:.5f}"
+
+
 def write_obj_and_mtl(obj_path: Path) -> None:
     obj_path.parent.mkdir(parents=True, exist_ok=True)
     mtl_path = obj_path.with_suffix(".mtl")
@@ -450,9 +457,9 @@ def write_obj_and_mtl(obj_path: Path) -> None:
         obj_lines.append(f"o {region}")
         obj_lines.append(f"usemtl {material}")
         for vx, vy, vz in verts:
-            obj_lines.append(f"v {vx:.5f} {vy:.5f} {vz:.5f}")
+            obj_lines.append(f"v {_fmt(vx)} {_fmt(vy)} {_fmt(vz)}")
         for nx, ny, nz in normals:
-            obj_lines.append(f"vn {nx:.5f} {ny:.5f} {nz:.5f}")
+            obj_lines.append(f"vn {_fmt(nx)} {_fmt(ny)} {_fmt(nz)}")
         for a, b, c in tris:
             ia, ib, ic = a + v_offset, b + v_offset, c + v_offset
             obj_lines.append(f"f {ia}//{ia} {ib}//{ib} {ic}//{ic}")

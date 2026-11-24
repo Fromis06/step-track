@@ -2,6 +2,7 @@ import Foundation
 
 #if DEBUG
 enum FixtureData {
+    @MainActor
     static func seed(fitness: FitnessStore, activity: ActivityStore) {
         let now = Date()
         let payload = makeBackupPayload(referenceDate: now)

@@ -17,9 +17,12 @@ final class ExerciseLibraryTests: XCTestCase {
         }
 
         XCTAssertEqual(EquipmentType.allCases.count, 28)
-        XCTAssertEqual(loader.exercises(for: .band).count, 54)
-        XCTAssertEqual(loader.exercises(for: .resistanceBand).count, 7)
-        XCTAssertEqual(loader.exercises(for: .band).count + loader.exercises(for: .resistanceBand).count, loader.exercises(for: EquipmentCategory.band).count)
+        XCTAssertEqual(loader.exercises(for: EquipmentType.band).count, 54)
+        XCTAssertEqual(loader.exercises(for: EquipmentType.resistanceBand).count, 7)
+        XCTAssertEqual(
+            loader.exercises(for: EquipmentType.band).count + loader.exercises(for: EquipmentType.resistanceBand).count,
+            loader.exercises(for: EquipmentCategory.band).count
+        )
 
         // All 15 selectable 3D body regions resolve non-empty exercises.
         XCTAssertEqual(BodyRegionID.allCases.count, 15)
@@ -28,8 +31,10 @@ final class ExerciseLibraryTests: XCTestCase {
         }
 
         // Exact expected counts for neck and cardio.
-        XCTAssertEqual(loader.exercises(for: .neck).count, 2)
-        XCTAssertEqual(loader.exercises(for: .cardio).count, 29)
+        XCTAssertEqual(loader.exercises(for: BodyPart.neck).count, 2)
+        XCTAssertEqual(loader.exercises(for: BodyRegionID.neck).count, 2)
+        XCTAssertEqual(loader.exercises(for: BodyPart.cardio).count, 29)
+        XCTAssertEqual(loader.exercises(for: BodyRegionID.cardio).count, 29)
     }
 
     func testBodyMeshAssetAndStructuralNodeNames() {

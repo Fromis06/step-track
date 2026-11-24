@@ -107,7 +107,6 @@ final class StepGoalParityTests: XCTestCase {
         let center = ParityMockNotificationCenter()
 
         try await scheduler.scheduleDailyReminder(hour: 21, minute: 30, using: center)
-        try await Task.sleep(for: .milliseconds(50))
 
         let pending = await center.pendingNotificationRequests()
         XCTAssertEqual(pending.count, 1)
@@ -116,13 +115,12 @@ final class StepGoalParityTests: XCTestCase {
         XCTAssertEqual(trigger.dateComponents.minute, 30)
         XCTAssertTrue(trigger.repeats)
 
-        let removeCallsBefore = await center.recordedRemoveAllCount()
+        let removeCallsBefore = center.recordedRemoveAllCount()
         // Default protocol extension forwards removePendingNotificationRequests(withIdentifiers:)
         // to removeAllPendingNotificationRequests().
         center.removePendingNotificationRequests(withIdentifiers: [DailyReminderScheduler.reminderIdentifier])
-        try await Task.sleep(for: .milliseconds(50))
 
-        let removeCallsAfter = await center.recordedRemoveAllCount()
+        let removeCallsAfter = center.recordedRemoveAllCount()
         XCTAssertEqual(removeCallsAfter, removeCallsBefore + 1)
         let remaining = await center.pendingNotificationRequests()
         XCTAssertTrue(remaining.isEmpty)

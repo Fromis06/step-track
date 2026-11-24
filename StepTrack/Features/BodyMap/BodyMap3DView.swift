@@ -44,9 +44,7 @@ struct BodyMap3DView: UIViewRepresentable {
         let cameraNode = SCNNode()
         cameraNode.camera = camera
         cameraNode.position = SCNVector3(0, 0.92, isBackView ? -2.65 : 2.65)
-        let lookConstraint = SCNLookAtConstraint(target: lookAtNode)
-        lookConstraint.isGimbalLockEnabled = true
-        cameraNode.constraints = [lookConstraint]
+        cameraNode.look(at: SCNVector3(0, 0.92, 0))
         scene.rootNode.addChildNode(cameraNode)
         coordinator.cameraNode = cameraNode
 
@@ -74,6 +72,7 @@ struct BodyMap3DView: UIViewRepresentable {
             defaultMuscleColor: defaultMuscleColor,
             cardioColor: cardioColor
         )
+        scnView.prepare([scene], shouldAbortBlock: nil)
 
         return scnView
     }
@@ -100,6 +99,7 @@ struct BodyMap3DView: UIViewRepresentable {
                 SCNTransaction.animationDuration = 0.35
                 scnView.pointOfView = cameraNode
                 cameraNode.position = SCNVector3(0, 0.92, isBackView ? -2.65 : 2.65)
+                cameraNode.look(at: SCNVector3(0, 0.92, 0))
                 scnView.defaultCameraController.target = SCNVector3(0, 0.92, 0)
                 SCNTransaction.commit()
             }
@@ -114,7 +114,20 @@ struct BodyMap3DView: UIViewRepresentable {
             if let url = bundle.url(forResource: "human_body", withExtension: "obj")
                 ?? bundle.url(forResource: "human_body", withExtension: "obj", subdirectory: "Models3D") {
                 let asset = MDLAsset(url: url)
-                return SCNScene(mdlAsset: asset)
+                let mdlScene = SCNScene(mdlAsset: asset)
+                var hasGeometry = false
+                mdlScene.rootNode.enumerateChildNodes { node, stop in
+                    if node.geometry != nil {
+                        hasGeometry = true
+                        stop.pointee = true
+                    }
+                }
+                if hasGeometry {
+                    return mdlScene
+                }
+                if let directScene = try? SCNScene(url: url, options: nil) {
+                    return directScene
+                }
             }
         }
         return SCNScene()

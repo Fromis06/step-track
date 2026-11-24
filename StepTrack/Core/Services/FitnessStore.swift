@@ -57,7 +57,9 @@ final class FitnessStore: ObservableObject {
             self.profile = UserBodyProfile()
             self.goals = PersonalGoals()
             self.goalChecklist = GoalChecklistStore()
+            #if DEBUG
             loadFixtureData()
+            #endif
         } else {
             self.weeklySplit = localStore.loadWeeklySplit()
             self.sessions = localStore.loadWorkoutSessions().sorted { $0.date > $1.date }

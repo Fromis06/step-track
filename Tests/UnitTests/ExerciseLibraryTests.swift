@@ -1,4 +1,7 @@
 import XCTest
+import SceneKit
+import SceneKit.ModelIO
+import ModelIO
 @testable import StepTrack
 
 final class ExerciseLibraryTests: XCTestCase {
@@ -37,12 +40,25 @@ final class ExerciseLibraryTests: XCTestCase {
         XCTAssertEqual(loader.exercises(for: BodyRegionID.cardio).count, 29)
     }
 
-    func testBodyMeshAssetAndStructuralNodeNames() {
-        let objURL = Bundle.main.url(forResource: "human_body", withExtension: "obj")
-        XCTAssertNotNil(objURL)
+    func testBodyMeshAssetAndStructuralNodeNames() throws {
+        let objURL = try XCTUnwrap(Bundle.main.url(forResource: "human_body", withExtension: "obj"))
         XCTAssertEqual(BodyRegionID.structuralNodeNames, ["head", "torso_core", "hands", "feet"])
         for structural in BodyRegionID.structuralNodeNames {
             XCTAssertNil(BodyRegionID(rawValue: structural))
+        }
+
+        let scene = SCNScene(mdlAsset: MDLAsset(url: objURL))
+        var nodeNames: Set<String> = []
+        scene.rootNode.enumerateChildNodes { node, _ in
+            if let name = node.name, !name.isEmpty {
+                nodeNames.insert(name)
+            }
+        }
+        for region in BodyRegionID.allCases {
+            XCTAssertTrue(nodeNames.contains(region.rawValue), "Missing 3D node \(region.rawValue) in \(nodeNames)")
+        }
+        for structural in BodyRegionID.structuralNodeNames {
+            XCTAssertTrue(nodeNames.contains(structural), "Missing structural 3D node \(structural)")
         }
     }
 

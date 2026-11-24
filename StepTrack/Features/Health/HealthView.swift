@@ -405,9 +405,12 @@ struct HealthView: View {
                     Text(Copy.text(meal.category.localizationKey))
                         .font(.caption2)
                         .foregroundStyle(palette.textSecondary)
+                        .lineLimit(1)
                     Text(Copy.format("%@ kcal", Copy.number(meal.calories)))
                         .font(.caption2.weight(.semibold))
                         .foregroundStyle(palette.accent)
+                        .lineLimit(1)
+                        .fixedSize(horizontal: true, vertical: false)
                     if meal.macros.proteinG > 0 {
                         macroBadge(Copy.text("Protein"), grams: meal.macros.proteinG)
                     }
@@ -457,6 +460,8 @@ struct HealthView: View {
                 .font(.caption2.monospacedDigit())
                 .foregroundStyle(palette.textSecondary)
         }
+        .lineLimit(1)
+        .fixedSize(horizontal: true, vertical: false)
         .padding(.horizontal, 5)
         .padding(.vertical, 2)
         .background(palette.bgCard, in: RoundedRectangle(cornerRadius: 6, style: .continuous))

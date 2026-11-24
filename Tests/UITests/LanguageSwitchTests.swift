@@ -23,6 +23,7 @@ final class LanguageSwitchTests: XCTestCase {
         XCTAssertTrue(app.buttons["bodyResetButton"].exists)
         XCTAssertTrue(app.textFields["exerciseSearchField"].exists)
         app.buttons["bodyFlipButton"].tap()
+        Thread.sleep(forTimeInterval: 0.7)
         screenshot("03-bodymap-3d-back")
         app.buttons["bodyResetButton"].tap()
 

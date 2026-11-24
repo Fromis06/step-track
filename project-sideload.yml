@@ -2,6 +2,15 @@ name: StepTrackSideload
 options:
   deploymentTarget:
     iOS: "17.0"
+  developmentLanguage: en
+  createIntermediateGroups: true
+  fileTypes:
+    obj:
+      buildPhase: resources
+      file: true
+    mtl:
+      buildPhase: resources
+      file: true
 settings:
   base:
     SWIFT_VERSION: "5.0"
@@ -16,9 +25,23 @@ targets:
     platform: iOS
     sources:
       - StepTrack/App
-      - StepTrack/Shared
-      - StepTrack/Assets.xcassets
-      - StepTrack/Resources
+      - path: StepTrack/Core
+        excludes:
+          - "**/.gitkeep"
+      - path: StepTrack/Features
+        excludes:
+          - "**/.gitkeep"
+      - StepTrack/Resources/Assets.xcassets
+      - path: StepTrack/Resources/Datasets/exercises.json
+        type: file
+        buildPhase: resources
+      - path: StepTrack/Resources/Models3D/human_body.obj
+        type: file
+        buildPhase: resources
+      - path: StepTrack/Resources/Models3D/human_body.mtl
+        type: file
+        buildPhase: resources
+      - StepTrack/Resources/Localization
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID)
@@ -28,23 +51,36 @@ targets:
       path: StepTrack/Config/Sideload-Info.plist
       properties:
         CFBundleDisplayName: Step Track
-        NSMotionUsageDescription: Step Track đọc bước chân và quãng đường từ cảm biến iPhone để hiển thị hoạt động của bạn.
+        NSMotionUsageDescription: Step Track reads steps and distance from your iPhone's motion sensor.
         UILaunchScreen: {}
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
   StepTrackTests:
     type: bundle.unit-test
     platform: iOS
-    sources: [StepTrack/Tests]
+    sources:
+      - Tests/UnitTests
     dependencies:
       - target: StepTrack
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).tests
+  StepsTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests/StepsTests
+    dependencies:
+      - target: StepTrack
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).stepstests
   StepTrackUITests:
     type: bundle.ui-testing
     platform: iOS
-    sources: [StepTrack/UITests]
+    sources:
+      - Tests/UITests
     dependencies:
       - target: StepTrack
     settings:
@@ -58,4 +94,4 @@ schemes:
       targets:
         StepTrack: all
     test:
-      targets: [StepTrackTests, StepTrackUITests]
+      targets: [StepTrackTests, StepsTests, StepTrackUITests]

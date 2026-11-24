@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from PIL import Image, ImageDraw
 
-root = Path(__file__).resolve().parents[1] / "StepTrack/Assets.xcassets"
+root = Path(__file__).resolve().parents[1] / "StepTrack/Resources/Assets.xcassets"
 icon = root / "AppIcon.appiconset"
 icon.mkdir(parents=True, exist_ok=True)
 image = Image.new("RGB", (1024, 1024), (17, 49, 37))
@@ -13,5 +13,5 @@ draw.arc((170, 170, 854, 854), 135, 435, fill=(183, 232, 130), width=63)
 draw.rounded_rectangle((383, 405, 477, 640), radius=47, fill=(247, 250, 239))
 draw.rounded_rectangle((547, 325, 641, 560), radius=47, fill=(183, 232, 130))
 image.save(icon / "AppIcon.png")
-(root / "Contents.json").write_text(json.dumps({"info": {"author": "xcode", "version": 1}}, indent=2))
-(icon / "Contents.json").write_text(json.dumps({"images": [{"filename": "AppIcon.png", "idiom": "universal", "platform": "ios", "size": "1024x1024"}], "info": {"author": "xcode", "version": 1}}, indent=2))
+(root / "Contents.json").write_text(json.dumps({"info": {"author": "xcode", "version": 1}}, indent=2) + "\n", encoding="utf-8", newline="\n")
+(icon / "Contents.json").write_text(json.dumps({"images": [{"filename": "AppIcon.png", "idiom": "universal", "platform": "ios", "size": "1024x1024"}], "info": {"author": "xcode", "version": 1}}, indent=2) + "\n", encoding="utf-8", newline="\n")

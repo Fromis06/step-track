@@ -1,16 +1,42 @@
 # Step Track
 
-Ứng dụng đếm bước cá nhân cho iPhone, giao diện SwiftUI tối giản xanh lá, sáng/tối và Tiếng Việt / English / 日本語.
+Step Track is a personal iOS fitness, gym, and activity tracking app built with SwiftUI for sideloaded `.ipa` installation without accounts, ads, or external servers.
 
-- Cảm biến iPhone: số bước, quãng đường, mục tiêu và biểu đồ 7 ngày.
-- Thanh điều hướng nổi chỉ icon: Trang chủ, Thống kê, Cài đặt.
-- Lịch hoạt động tháng/năm, mục tiêu riêng từng ngày và lịch sử lưu lâu dài.
-- Không quảng cáo, tài khoản, paywall hay gửi dữ liệu lên máy chủ.
-- GitHub Actions kiểm thử trên iPhone 11 simulator và xuất IPA để ký lại bằng Sideloadly.
+## Capabilities
 
-## Build
+- **Activity & Step Tracking**: Daily step ring, distance, goal progress, and long-term local history via CoreMotion (`CMPedometer`) with manual entry fallback when sideloaded without HealthKit entitlements.
+- **Workouts & Weight (kg) Progression**: Weekly training split schedule, set-by-set weight (kg) and rep logging, estimated 1RM / PR tracking, and built-in rest timer.
+- **Offline 3D Body Map & Exercise Library**: Interactive SceneKit 3D body mesh (`human_body.obj`) paired with 1,324 offline categorized exercises (`exercises.json`).
+- **Health, Nutrition & Dashboards**: Sleep, meals, calorie balance, hydration, body weight, personal goals, and Weekly / Monthly / Yearly analytics.
+- **Themes, Localization & Backups**: Multiple color themes, light/dark appearance, `en` / `vi` / `ja` / `es` localization, 100% bundled SVG icons, and JSON export/import backup.
 
-Xem [hướng dẫn cài iPhone](BUILD-IPHONE.md). Trên Mac:
+## Architecture & Sideload Design
+
+- `project-sideload.yml` (Primary): Targets iOS 17.0+ with `MOTION_ONLY` enabled. Requires only `NSMotionUsageDescription` and avoids restricted entitlements (no HealthKit, App Groups, iCloud, or WidgetKit extension), ensuring compatibility with free Apple developer sideloading.
+- `project.yml` (Optional Full Build): Enables HealthKit, App Groups, and `StepTrackWidget` for paid developer signing.
+
+## Repository Layout
+
+```text
+.
+├── .github/workflows/build-ios.yml   # macOS-15 XcodeGen, Simulator tests, unsigned .ipa CI
+├── project-sideload.yml              # Primary sideload XcodeGen spec (MOTION_ONLY)
+├── project.yml                       # Full HealthKit + WidgetKit XcodeGen spec
+├── scripts/                          # Icon, asset, dataset, 3D mesh, and R2 compliance tools
+├── StepTrack/
+│   ├── App/                          # App entry point & navigation shell
+│   ├── Core/                         # Models, Persistence, Services, DesignSystem, Localization
+│   ├── Features/                     # Today, Workouts, BodyMap, Health, Analytics, Settings
+│   ├── Resources/                    # Assets.xcassets (AppIcon + Icons), Datasets, Models3D, Localization
+│   ├── Widget/                       # WidgetKit extension (used by project.yml)
+│   └── Config/                       # Generated Info.plist / entitlements (gitignored)
+└── Tests/
+    ├── UnitTests/                    # Domain, history, snapshot, and signing tests
+    ├── StepsTests/                   # Migrated goal, checkpoint, reminder, and attribution tests
+    └── UITests/                      # UI and localization verification
+```
+
+## Generating the Xcode Project Locally (macOS)
 
 ```sh
 brew install xcodegen
@@ -18,20 +44,8 @@ xcodegen generate --spec project-sideload.yml
 open StepTrackSideload.xcodeproj
 ```
 
-Mã app nằm trong `StepTrack/App`, dữ liệu trong `StepTrack/Shared`, kiểm thử trong `StepTrack/Tests` và `StepTrack/UITests`.
+See [BUILD-IPHONE.md](BUILD-IPHONE.md) for GitHub Actions CI and iPhone sideload instructions.
 
-Cấu hình Health/widget cũ (`project.yml`) vẫn được giữ để tham khảo, không nằm trong workflow hiện tại. Bản đang phát triển dùng Motion và không yêu cầu quyền HealthKit/App Groups.
+## License
 
-## Nguồn gốc
-
-Khởi tạo từ [brittanyarima/Steps](https://github.com/brittanyarima/Steps), commit `e395cdd`, giấy phép MIT. Giữ [LICENSE](LICENSE) và [README gốc](README.upstream.md). Các thư mục `Steps/`, `StepsWidget/`, `StepsTests/`, `Steps.xcodeproj` là nguồn tham khảo upstream, không nằm trong bản build mới. Đây là bản tùy biến độc lập.
-
-## Sideload: lịch sử và điều hướng
-
-Bản Motion hiện có thanh điều hướng nổi chỉ dùng icon: Trang chủ, Thống kê, Cài đặt. Thống kê có lịch tháng và 12 tháng xếp 4 hàng × 3 cột, tổng bước ở góc phải. Ngày đạt mục tiêu được tô xanh.
-
-Mục tiêu thay đổi áp dụng cho hôm nay và các ngày tiếp theo; mục tiêu của ngày đã qua được giữ nguyên. Dữ liệu từ bản cũ chưa lưu mục tiêu lịch sử được đánh dấu chưa biết, không gán mục tiêu hiện tại ngược về quá khứ.
-
-Lịch sử được lưu lâu dài trên iPhone, không tự xóa sau 7 ngày. Tuy nhiên Motion chỉ cho truy vấn khoảng 7 ngày gần nhất, nên cần mở app vài ngày một lần để bổ sung lịch sử. Khoảng trống quá cũ không thể khôi phục; tổng tháng/năm là tổng dữ liệu đã lưu. Gỡ app hoặc chọn xóa lịch sử sẽ mất dữ liệu cục bộ. Khi cập nhật bằng Sideloadly, giữ cùng Apple ID và bundle ID, không gỡ bản đang dùng trước.
-
-Workflow hiện kiểm thử và xuất `StepTrack-sideload-unsigned.ipa` (không cần HealthKit hay widget).
+MIT License. Based in part on [brittanyarima/Steps](https://github.com/brittanyarima/Steps) (`LICENSE`). See [LICENSE](LICENSE).

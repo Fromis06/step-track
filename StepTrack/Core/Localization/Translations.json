@@ -1,0 +1,2456 @@
+{
+  "Today": {
+    "en": "Today",
+    "vi": "Hôm nay",
+    "ja": "今日",
+    "es": "Hoy"
+  },
+  "Train": {
+    "en": "Train",
+    "vi": "Tập luyện",
+    "ja": "トレーニング",
+    "es": "Entrenar"
+  },
+  "Body": {
+    "en": "Body",
+    "vi": "Cơ thể",
+    "ja": "ボディ",
+    "es": "Cuerpo"
+  },
+  "Health": {
+    "en": "Health",
+    "vi": "Sức khỏe",
+    "ja": "健康",
+    "es": "Salud"
+  },
+  "Stats": {
+    "en": "Stats",
+    "vi": "Thống kê",
+    "ja": "統計",
+    "es": "Estadísticas"
+  },
+  "Home": {
+    "en": "Home",
+    "vi": "Trang chủ",
+    "ja": "ホーム",
+    "es": "Inicio"
+  },
+  "Statistics": {
+    "en": "Statistics",
+    "vi": "Thống kê",
+    "ja": "統計",
+    "es": "Estadísticas"
+  },
+  "Settings": {
+    "en": "Settings",
+    "vi": "Cài đặt",
+    "ja": "設定",
+    "es": "Ajustes"
+  },
+  "TODAY": {
+    "en": "TODAY",
+    "vi": "HÔM NAY",
+    "ja": "今日",
+    "es": "HOY"
+  },
+  "Steps": {
+    "en": "Steps",
+    "vi": "Bước",
+    "ja": "歩数",
+    "es": "Pasos"
+  },
+  "steps": {
+    "en": "steps",
+    "vi": "bước",
+    "ja": "歩",
+    "es": "pasos"
+  },
+  "Goal": {
+    "en": "Goal",
+    "vi": "Mục tiêu",
+    "ja": "目標",
+    "es": "Objetivo"
+  },
+  "Goal reached": {
+    "en": "Goal reached",
+    "vi": "Đạt mục tiêu",
+    "ja": "目標達成",
+    "es": "Objetivo cumplido"
+  },
+  "Below goal": {
+    "en": "Below goal",
+    "vi": "Chưa đạt",
+    "ja": "未達成",
+    "es": "Bajo objetivo"
+  },
+  "No data": {
+    "en": "No data",
+    "vi": "Chưa có",
+    "ja": "データなし",
+    "es": "Sin datos"
+  },
+  "No data yet": {
+    "en": "No data yet",
+    "vi": "Chưa có dữ liệu",
+    "ja": "データなし",
+    "es": "Sin datos aún"
+  },
+  "Goal not recorded": {
+    "en": "Goal not recorded",
+    "vi": "Chưa lưu mục tiêu",
+    "ja": "目標の記録なし",
+    "es": "Objetivo sin registro"
+  },
+  "Partial day": {
+    "en": "Partial day",
+    "vi": "Dữ liệu chưa đủ ngày",
+    "ja": "一部の記録のみ",
+    "es": "Día parcial"
+  },
+  "No steps": {
+    "en": "No steps",
+    "vi": "Chưa có bước",
+    "ja": "歩数なし",
+    "es": "Sin pasos"
+  },
+  "Distance": {
+    "en": "Distance",
+    "vi": "Quãng đường",
+    "ja": "距離",
+    "es": "Distancia"
+  },
+  "Remaining": {
+    "en": "Remaining",
+    "vi": "Còn lại",
+    "ja": "残り",
+    "es": "Restante"
+  },
+  "km": {
+    "en": "km",
+    "vi": "km",
+    "ja": "km",
+    "es": "km"
+  },
+  "Activity": {
+    "en": "Activity",
+    "vi": "Hoạt động",
+    "ja": "アクティビティ",
+    "es": "Actividad"
+  },
+  "Period": {
+    "en": "Period",
+    "vi": "Khoảng thời gian",
+    "ja": "期間",
+    "es": "Período"
+  },
+  "7 days": {
+    "en": "7 days",
+    "vi": "7 ngày",
+    "ja": "7日間",
+    "es": "7 días"
+  },
+  "30 days": {
+    "en": "30 days",
+    "vi": "30 ngày",
+    "ja": "30日間",
+    "es": "30 días"
+  },
+  "Day": {
+    "en": "Day",
+    "vi": "Ngày",
+    "ja": "日",
+    "es": "Día"
+  },
+  "DAILY AVERAGE": {
+    "en": "DAILY AVERAGE",
+    "vi": "TRUNG BÌNH NGÀY",
+    "ja": "1日平均",
+    "es": "PROMEDIO DIARIO"
+  },
+  "GOAL DAYS": {
+    "en": "GOAL DAYS",
+    "vi": "NGÀY ĐẠT MỤC TIÊU",
+    "ja": "目標達成日",
+    "es": "DÍAS CUMPLIDOS"
+  },
+  "Total steps": {
+    "en": "Total steps",
+    "vi": "Tổng bước",
+    "ja": "合計歩数",
+    "es": "Pasos totales"
+  },
+  "Daily goal": {
+    "en": "Daily goal",
+    "vi": "Mục tiêu ngày",
+    "ja": "1日の目標",
+    "es": "Objetivo diario"
+  },
+  "Step increment": {
+    "en": "Step increment",
+    "vi": "Mức tăng bước",
+    "ja": "歩数の増減単位",
+    "es": "Incremento"
+  },
+  "iPhone sensor": {
+    "en": "iPhone sensor",
+    "vi": "Cảm biến iPhone",
+    "ja": "iPhoneセンサー",
+    "es": "Sensor del iPhone"
+  },
+  "iPhone steps": {
+    "en": "iPhone steps",
+    "vi": "Bước chân iPhone",
+    "ja": "iPhoneの歩数",
+    "es": "Pasos del iPhone"
+  },
+  "Manual entry": {
+    "en": "Manual entry",
+    "vi": "Nhập thủ công",
+    "ja": "手動入力",
+    "es": "Entrada manual"
+  },
+  "Apple Health": {
+    "en": "Apple Health",
+    "vi": "Apple Health",
+    "ja": "Apple ヘルスケア",
+    "es": "Salud de Apple"
+  },
+  "Connect to Health": {
+    "en": "Connect to Health",
+    "vi": "Kết nối Sức khỏe",
+    "ja": "ヘルスケア連携",
+    "es": "Conectar Salud"
+  },
+  "Connect": {
+    "en": "Connect",
+    "vi": "Kết nối",
+    "ja": "接続",
+    "es": "Conectar"
+  },
+  "Connecting…": {
+    "en": "Connecting…",
+    "vi": "Đang kết nối…",
+    "ja": "接続中…",
+    "es": "Conectando…"
+  },
+  "Connect data": {
+    "en": "Connect data",
+    "vi": "Kết nối dữ liệu",
+    "ja": "データ連携",
+    "es": "Conectar datos"
+  },
+  "Updating…": {
+    "en": "Updating…",
+    "vi": "Đang cập nhật…",
+    "ja": "更新中…",
+    "es": "Actualizando…"
+  },
+  "Manual Steps": {
+    "en": "Manual Steps",
+    "vi": "Nhập số bước",
+    "ja": "手動歩数",
+    "es": "Pasos manuales"
+  },
+  "Add Steps": {
+    "en": "Add Steps",
+    "vi": "Thêm bước",
+    "ja": "歩数を追加",
+    "es": "Añadir pasos"
+  },
+  "Log Steps": {
+    "en": "Log Steps",
+    "vi": "Ghi số bước",
+    "ja": "歩数を記録",
+    "es": "Registrar pasos"
+  },
+  "Streak": {
+    "en": "Streak",
+    "vi": "Chuỗi ngày",
+    "ja": "連続記録",
+    "es": "Racha"
+  },
+  "Active Burn": {
+    "en": "Active Burn",
+    "vi": "Tiêu hao vận động",
+    "ja": "消費カロリー",
+    "es": "Quema activa"
+  },
+  "%@%% of goal": {
+    "en": "%@%% of goal",
+    "vi": "%@%% mục tiêu",
+    "ja": "目標の%@%%",
+    "es": "%@%% del objetivo"
+  },
+  "Goal: %@ steps": {
+    "en": "Goal: %@ steps",
+    "vi": "Mục tiêu: %@ bước",
+    "ja": "目標: %@歩",
+    "es": "Objetivo: %@ pasos"
+  },
+  "%@ steps": {
+    "en": "%@ steps",
+    "vi": "%@ bước",
+    "ja": "%@歩",
+    "es": "%@ pasos"
+  },
+  "%@ steps today, goal %@": {
+    "en": "%@ steps today, goal %@",
+    "vi": "Hôm nay %@ bước, mục tiêu %@",
+    "ja": "今日%@歩、目標%@",
+    "es": "%@ pasos hoy, objetivo %@"
+  },
+  "Updated %@": {
+    "en": "Updated %@",
+    "vi": "Cập nhật %@",
+    "ja": "更新 %@",
+    "es": "Actualizado %@"
+  },
+  "At %@": {
+    "en": "At %@",
+    "vi": "Lúc %@",
+    "ja": "%@時点",
+    "es": "A las %@"
+  },
+  "/ %@ steps": {
+    "en": "/ %@ steps",
+    "vi": "/ %@ bước",
+    "ja": "/ %@歩",
+    "es": "/ %@ pasos"
+  },
+  "Goal: %@": {
+    "en": "Goal: %@",
+    "vi": "Mục tiêu: %@",
+    "ja": "目標: %@",
+    "es": "Objetivo: %@"
+  },
+  "%@ km": {
+    "en": "%@ km",
+    "vi": "%@ km",
+    "ja": "%@ km",
+    "es": "%@ km"
+  },
+  "%@ kcal": {
+    "en": "%@ kcal",
+    "vi": "%@ kcal",
+    "ja": "%@ kcal",
+    "es": "%@ kcal"
+  },
+  "%@ kg": {
+    "en": "%@ kg",
+    "vi": "%@ kg",
+    "ja": "%@ kg",
+    "es": "%@ kg"
+  },
+  "%@ ml": {
+    "en": "%@ ml",
+    "vi": "%@ ml",
+    "ja": "%@ ml",
+    "es": "%@ ml"
+  },
+  "%@ h %@ m": {
+    "en": "%@ h %@ m",
+    "vi": "%@ giờ %@ phút",
+    "ja": "%@時間%@分",
+    "es": "%@ h %@ m"
+  },
+  "%@ sets": {
+    "en": "%@ sets",
+    "vi": "%@ hiệp",
+    "ja": "%@セット",
+    "es": "%@ series"
+  },
+  "%@ reps": {
+    "en": "%@ reps",
+    "vi": "%@ lần",
+    "ja": "%@回",
+    "es": "%@ reps"
+  },
+  "Open app to connect": {
+    "en": "Open app to connect",
+    "vi": "Mở ứng dụng để kết nối",
+    "ja": "アプリを開いて連携",
+    "es": "Abre la app para conectar"
+  },
+  "Open app to check widget": {
+    "en": "Open app to check widget",
+    "vi": "Mở ứng dụng để kiểm tra widget",
+    "ja": "アプリでウィジェットを確認",
+    "es": "Abre la app para ver el widget"
+  },
+  "Open app to update": {
+    "en": "Open app to update",
+    "vi": "Mở ứng dụng để cập nhật",
+    "ja": "アプリを開いて更新",
+    "es": "Abre la app para actualizar"
+  },
+  "Steps over the last 7 days": {
+    "en": "Steps over the last 7 days",
+    "vi": "Bước chân 7 ngày qua",
+    "ja": "過去7日間の歩数",
+    "es": "Pasos de los últimos 7 días"
+  },
+  "Today's steps": {
+    "en": "Today's steps",
+    "vi": "Bước chân hôm nay",
+    "ja": "今日の歩数",
+    "es": "Pasos de hoy"
+  },
+  "Steps, goal, and activity": {
+    "en": "Steps, goal, and activity",
+    "vi": "Bước chân, mục tiêu và hoạt động",
+    "ja": "歩数、目標、アクティビティ",
+    "es": "Pasos, objetivo y actividad"
+  },
+  "Monday": {
+    "en": "Monday",
+    "vi": "Thứ Hai",
+    "ja": "月曜日",
+    "es": "Lunes"
+  },
+  "Tuesday": {
+    "en": "Tuesday",
+    "vi": "Thứ Ba",
+    "ja": "火曜日",
+    "es": "Martes"
+  },
+  "Wednesday": {
+    "en": "Wednesday",
+    "vi": "Thứ Tư",
+    "ja": "水曜日",
+    "es": "Miércoles"
+  },
+  "Thursday": {
+    "en": "Thursday",
+    "vi": "Thứ Năm",
+    "ja": "木曜日",
+    "es": "Jueves"
+  },
+  "Friday": {
+    "en": "Friday",
+    "vi": "Thứ Sáu",
+    "ja": "金曜日",
+    "es": "Viernes"
+  },
+  "Saturday": {
+    "en": "Saturday",
+    "vi": "Thứ Bảy",
+    "ja": "土曜日",
+    "es": "Sábado"
+  },
+  "Sunday": {
+    "en": "Sunday",
+    "vi": "Chủ Nhật",
+    "ja": "日曜日",
+    "es": "Domingo"
+  },
+  "Mon": {
+    "en": "Mon",
+    "vi": "T2",
+    "ja": "月",
+    "es": "Lun"
+  },
+  "Tue": {
+    "en": "Tue",
+    "vi": "T3",
+    "ja": "火",
+    "es": "Mar"
+  },
+  "Wed": {
+    "en": "Wed",
+    "vi": "T4",
+    "ja": "水",
+    "es": "Mié"
+  },
+  "Thu": {
+    "en": "Thu",
+    "vi": "T5",
+    "ja": "木",
+    "es": "Jue"
+  },
+  "Fri": {
+    "en": "Fri",
+    "vi": "T6",
+    "ja": "金",
+    "es": "Vie"
+  },
+  "Sat": {
+    "en": "Sat",
+    "vi": "T7",
+    "ja": "土",
+    "es": "Sáb"
+  },
+  "Sun": {
+    "en": "Sun",
+    "vi": "CN",
+    "ja": "日",
+    "es": "Dom"
+  },
+  "Push": {
+    "en": "Push",
+    "vi": "Đẩy",
+    "ja": "プッシュ",
+    "es": "Empuje"
+  },
+  "Pull": {
+    "en": "Pull",
+    "vi": "Kéo",
+    "ja": "プル",
+    "es": "Tirón"
+  },
+  "Legs": {
+    "en": "Legs",
+    "vi": "Chân",
+    "ja": "脚",
+    "es": "Piernas"
+  },
+  "Upper": {
+    "en": "Upper",
+    "vi": "Thân trên",
+    "ja": "上半身",
+    "es": "Tren superior"
+  },
+  "Lower": {
+    "en": "Lower",
+    "vi": "Thân dưới",
+    "ja": "下半身",
+    "es": "Tren inferior"
+  },
+  "Full Body": {
+    "en": "Full Body",
+    "vi": "Toàn thân",
+    "ja": "全身",
+    "es": "Cuerpo completo"
+  },
+  "Cardio": {
+    "en": "Cardio",
+    "vi": "Tim mạch",
+    "ja": "有酸素",
+    "es": "Cardio"
+  },
+  "Rest": {
+    "en": "Rest",
+    "vi": "Nghỉ ngơi",
+    "ja": "休息",
+    "es": "Descanso"
+  },
+  "Custom": {
+    "en": "Custom",
+    "vi": "Tùy chỉnh",
+    "ja": "カスタム",
+    "es": "Personalizado"
+  },
+  "Weekly Split": {
+    "en": "Weekly Split",
+    "vi": "Lịch tập tuần",
+    "ja": "週間メニュー",
+    "es": "Rutina semanal"
+  },
+  "Edit Split": {
+    "en": "Edit Split",
+    "vi": "Sửa lịch tập",
+    "ja": "メニュー編集",
+    "es": "Editar rutina"
+  },
+  "Today's Workout": {
+    "en": "Today's Workout",
+    "vi": "Buổi tập hôm nay",
+    "ja": "今日のトレーニング",
+    "es": "Entreno de hoy"
+  },
+  "Start Workout": {
+    "en": "Start Workout",
+    "vi": "Bắt đầu tập",
+    "ja": "トレーニング開始",
+    "es": "Iniciar entreno"
+  },
+  "Resume Workout": {
+    "en": "Resume Workout",
+    "vi": "Tiếp tục tập",
+    "ja": "トレーニング再開",
+    "es": "Reanudar entreno"
+  },
+  "Finish Workout": {
+    "en": "Finish Workout",
+    "vi": "Hoàn thành",
+    "ja": "トレーニング終了",
+    "es": "Finalizar entreno"
+  },
+  "Discard Workout": {
+    "en": "Discard Workout",
+    "vi": "Hủy buổi tập",
+    "ja": "記録を破棄",
+    "es": "Descartar entreno"
+  },
+  "Empty Session": {
+    "en": "Empty Session",
+    "vi": "Buổi tập trống",
+    "ja": "空のセッション",
+    "es": "Sesión vacía"
+  },
+  "Workout Templates": {
+    "en": "Workout Templates",
+    "vi": "Mẫu buổi tập",
+    "ja": "テンプレート",
+    "es": "Plantillas"
+  },
+  "Session History": {
+    "en": "Session History",
+    "vi": "Lịch sử buổi tập",
+    "ja": "トレーニング履歴",
+    "es": "Historial"
+  },
+  "No Workouts": {
+    "en": "No Workouts",
+    "vi": "Chưa có buổi tập",
+    "ja": "記録なし",
+    "es": "Sin entrenos"
+  },
+  "Rest Day": {
+    "en": "Rest Day",
+    "vi": "Ngày nghỉ",
+    "ja": "休養日",
+    "es": "Día de descanso"
+  },
+  "Exercise": {
+    "en": "Exercise",
+    "vi": "Bài tập",
+    "ja": "種目",
+    "es": "Ejercicio"
+  },
+  "Exercises": {
+    "en": "Exercises",
+    "vi": "Bài tập",
+    "ja": "種目一覧",
+    "es": "Ejercicios"
+  },
+  "Set": {
+    "en": "Set",
+    "vi": "Hiệp",
+    "ja": "セット",
+    "es": "Serie"
+  },
+  "Sets": {
+    "en": "Sets",
+    "vi": "Số hiệp",
+    "ja": "セット数",
+    "es": "Series"
+  },
+  "Previous": {
+    "en": "Previous",
+    "vi": "Lần trước",
+    "ja": "前回",
+    "es": "Anterior"
+  },
+  "Weight (kg)": {
+    "en": "Weight (kg)",
+    "vi": "Mức tạ (kg)",
+    "ja": "重量 (kg)",
+    "es": "Peso (kg)"
+  },
+  "kg": {
+    "en": "kg",
+    "vi": "kg",
+    "ja": "kg",
+    "es": "kg"
+  },
+  "Reps": {
+    "en": "Reps",
+    "vi": "Số lần",
+    "ja": "回数",
+    "es": "Reps"
+  },
+  "RPE": {
+    "en": "RPE",
+    "vi": "RPE",
+    "ja": "RPE",
+    "es": "RPE"
+  },
+  "Volume": {
+    "en": "Volume",
+    "vi": "Khối lượng",
+    "ja": "総負荷量",
+    "es": "Volumen"
+  },
+  "Estimated 1RM": {
+    "en": "Estimated 1RM",
+    "vi": "1RM ước tính",
+    "ja": "推定1RM",
+    "es": "1RM estimado"
+  },
+  "e1RM": {
+    "en": "e1RM",
+    "vi": "e1RM",
+    "ja": "推定1RM",
+    "es": "1RM est."
+  },
+  "Personal Record": {
+    "en": "Personal Record",
+    "vi": "Kỷ lục cá nhân",
+    "ja": "自己ベスト",
+    "es": "Récord personal"
+  },
+  "PR": {
+    "en": "PR",
+    "vi": "PR",
+    "ja": "PR",
+    "es": "PR"
+  },
+  "Add Set": {
+    "en": "Add Set",
+    "vi": "Thêm hiệp",
+    "ja": "セット追加",
+    "es": "Añadir serie"
+  },
+  "Add Exercise": {
+    "en": "Add Exercise",
+    "vi": "Thêm bài tập",
+    "ja": "種目を追加",
+    "es": "Añadir ejercicio"
+  },
+  "Repeat Last": {
+    "en": "Repeat Last",
+    "vi": "Lặp lại lần trước",
+    "ja": "前回をコピー",
+    "es": "Repetir última"
+  },
+  "Rest Timer": {
+    "en": "Rest Timer",
+    "vi": "Đếm giờ nghỉ",
+    "ja": "インターバル",
+    "es": "Temporizador"
+  },
+  "Rest complete": {
+    "en": "Rest complete",
+    "vi": "Hết giờ nghỉ",
+    "ja": "レスト終了",
+    "es": "Descanso terminado"
+  },
+  "Skip": {
+    "en": "Skip",
+    "vi": "Bỏ qua",
+    "ja": "スキップ",
+    "es": "Omitir"
+  },
+  "Pause": {
+    "en": "Pause",
+    "vi": "Tạm dừng",
+    "ja": "一時停止",
+    "es": "Pausar"
+  },
+  "Resume": {
+    "en": "Resume",
+    "vi": "Tiếp tục",
+    "ja": "再開",
+    "es": "Reanudar"
+  },
+  "Duration": {
+    "en": "Duration",
+    "vi": "Thời lượng",
+    "ja": "時間",
+    "es": "Duración"
+  },
+  "Notes": {
+    "en": "Notes",
+    "vi": "Ghi chú",
+    "ja": "メモ",
+    "es": "Notas"
+  },
+  "Body Map": {
+    "en": "Body Map",
+    "vi": "Bản đồ cơ",
+    "ja": "ボディマップ",
+    "es": "Mapa corporal"
+  },
+  "Exercise Library": {
+    "en": "Exercise Library",
+    "vi": "Thư viện bài tập",
+    "ja": "種目ライブラリ",
+    "es": "Biblioteca"
+  },
+  "Front": {
+    "en": "Front",
+    "vi": "Mặt trước",
+    "ja": "前面",
+    "es": "Frontal"
+  },
+  "Back": {
+    "en": "Back",
+    "vi": "Mặt sau",
+    "ja": "背面",
+    "es": "Posterior"
+  },
+  "Reset View": {
+    "en": "Reset View",
+    "vi": "Đặt lại góc nhìn",
+    "ja": "視点をリセット",
+    "es": "Restablecer vista"
+  },
+  "All": {
+    "en": "All",
+    "vi": "Tất cả",
+    "ja": "すべて",
+    "es": "Todo"
+  },
+  "Search exercises": {
+    "en": "Search exercises",
+    "vi": "Tìm bài tập",
+    "ja": "種目を検索",
+    "es": "Buscar ejercicios"
+  },
+  "No exercises found": {
+    "en": "No exercises found",
+    "vi": "Không thấy bài tập",
+    "ja": "種目が見つかりません",
+    "es": "Sin resultados"
+  },
+  "Instructions": {
+    "en": "Instructions",
+    "vi": "Hướng dẫn",
+    "ja": "手順",
+    "es": "Instrucciones"
+  },
+  "Primary Muscle": {
+    "en": "Primary Muscle",
+    "vi": "Cơ chính",
+    "ja": "主働筋",
+    "es": "Músculo principal"
+  },
+  "Secondary Muscles": {
+    "en": "Secondary Muscles",
+    "vi": "Cơ phụ",
+    "ja": "補助筋",
+    "es": "Músculos secundarios"
+  },
+  "Equipment": {
+    "en": "Equipment",
+    "vi": "Thiết bị",
+    "ja": "器具",
+    "es": "Equipo"
+  },
+  "Progression": {
+    "en": "Progression",
+    "vi": "Tiến độ",
+    "ja": "推移",
+    "es": "Progresión"
+  },
+  "Add to Split": {
+    "en": "Add to Split",
+    "vi": "Thêm vào lịch",
+    "ja": "メニューに追加",
+    "es": "Añadir a rutina"
+  },
+  "Log Set": {
+    "en": "Log Set",
+    "vi": "Ghi hiệp",
+    "ja": "セットを記録",
+    "es": "Registrar serie"
+  },
+  "Target Muscle": {
+    "en": "Target Muscle",
+    "vi": "Nhóm cơ đích",
+    "ja": "ターゲット筋",
+    "es": "Músculo objetivo"
+  },
+  "Body Part": {
+    "en": "Body Part",
+    "vi": "Vùng cơ thể",
+    "ja": "部位",
+    "es": "Zona corporal"
+  },
+  "Bodyweight": {
+    "en": "Bodyweight",
+    "vi": "Trọng lượng cơ thể",
+    "ja": "自重",
+    "es": "Peso corporal"
+  },
+  "Dumbbell": {
+    "en": "Dumbbell",
+    "vi": "Tạ đơn",
+    "ja": "ダンベル",
+    "es": "Mancuerna"
+  },
+  "Barbell": {
+    "en": "Barbell",
+    "vi": "Tạ đòn",
+    "ja": "バーベル",
+    "es": "Barra"
+  },
+  "Cable": {
+    "en": "Cable",
+    "vi": "Dây cáp",
+    "ja": "ケーブル",
+    "es": "Polea"
+  },
+  "Machine": {
+    "en": "Machine",
+    "vi": "Máy tập",
+    "ja": "マシン",
+    "es": "Máquina"
+  },
+  "Band": {
+    "en": "Band",
+    "vi": "Dây kháng lực",
+    "ja": "バンド",
+    "es": "Banda"
+  },
+  "Kettlebell": {
+    "en": "Kettlebell",
+    "vi": "Tạ ấm",
+    "ja": "ケトルベル",
+    "es": "Pesa rusa"
+  },
+  "Other": {
+    "en": "Other",
+    "vi": "Khác",
+    "ja": "その他",
+    "es": "Otro"
+  },
+  "back": {
+    "en": "Back",
+    "vi": "Lưng",
+    "ja": "背中",
+    "es": "Espalda"
+  },
+  "cardio": {
+    "en": "Cardio",
+    "vi": "Tim mạch",
+    "ja": "有酸素",
+    "es": "Cardio"
+  },
+  "chest": {
+    "en": "Chest",
+    "vi": "Ngực",
+    "ja": "胸",
+    "es": "Pecho"
+  },
+  "lower arms": {
+    "en": "Lower Arms",
+    "vi": "Cẳng tay",
+    "ja": "前腕",
+    "es": "Antebrazos"
+  },
+  "lower legs": {
+    "en": "Lower Legs",
+    "vi": "Cẳng chân",
+    "ja": "下腿",
+    "es": "Pierna inferior"
+  },
+  "neck": {
+    "en": "Neck",
+    "vi": "Cổ",
+    "ja": "首",
+    "es": "Cuello"
+  },
+  "shoulders": {
+    "en": "Shoulders",
+    "vi": "Vai",
+    "ja": "肩",
+    "es": "Hombros"
+  },
+  "upper arms": {
+    "en": "Upper Arms",
+    "vi": "Bắp tay",
+    "ja": "上腕",
+    "es": "Brazos"
+  },
+  "upper legs": {
+    "en": "Upper Legs",
+    "vi": "Đùi",
+    "ja": "大腿",
+    "es": "Muslos"
+  },
+  "waist": {
+    "en": "Waist",
+    "vi": "Eo và bụng",
+    "ja": "腹部と体幹",
+    "es": "Abdomen"
+  },
+  "abductors": {
+    "en": "Abductors",
+    "vi": "Cơ dạng đùi",
+    "ja": "外転筋",
+    "es": "Abductores"
+  },
+  "abs": {
+    "en": "Abs",
+    "vi": "Cơ bụng",
+    "ja": "腹筋",
+    "es": "Abdominales"
+  },
+  "adductors": {
+    "en": "Adductors",
+    "vi": "Cơ khép đùi",
+    "ja": "内転筋",
+    "es": "Aductores"
+  },
+  "biceps": {
+    "en": "Biceps",
+    "vi": "Nhị đầu",
+    "ja": "上腕二頭筋",
+    "es": "Bíceps"
+  },
+  "calves": {
+    "en": "Calves",
+    "vi": "Bắp chân",
+    "ja": "ふくらはぎ",
+    "es": "Gemelos"
+  },
+  "cardiovascular system": {
+    "en": "Cardiovascular",
+    "vi": "Hệ tim mạch",
+    "ja": "心肺機能",
+    "es": "Sistema cardiovascular"
+  },
+  "delts": {
+    "en": "Deltoids",
+    "vi": "Cơ vai",
+    "ja": "三角筋",
+    "es": "Deltoides"
+  },
+  "forearms": {
+    "en": "Forearms",
+    "vi": "Cẳng tay",
+    "ja": "前腕筋",
+    "es": "Antebrazos"
+  },
+  "glutes": {
+    "en": "Glutes",
+    "vi": "Cơ mông",
+    "ja": "殿筋",
+    "es": "Glúteos"
+  },
+  "hamstrings": {
+    "en": "Hamstrings",
+    "vi": "Đùi sau",
+    "ja": "ハムストリングス",
+    "es": "Isquiotibiales"
+  },
+  "lats": {
+    "en": "Lats",
+    "vi": "Cơ xô",
+    "ja": "広背筋",
+    "es": "Dorsales"
+  },
+  "levator scapulae": {
+    "en": "Levator Scapulae",
+    "vi": "Cơ nâng vai",
+    "ja": "肩甲挙筋",
+    "es": "Elevador de escápula"
+  },
+  "pectorals": {
+    "en": "Pectorals",
+    "vi": "Cơ ngực",
+    "ja": "大胸筋",
+    "es": "Pectorales"
+  },
+  "quads": {
+    "en": "Quads",
+    "vi": "Đùi trước",
+    "ja": "大腿四頭筋",
+    "es": "Cuádriceps"
+  },
+  "serratus anterior": {
+    "en": "Serratus Anterior",
+    "vi": "Cơ răng cưa",
+    "ja": "前鋸筋",
+    "es": "Serrato anterior"
+  },
+  "spine": {
+    "en": "Spine",
+    "vi": "Dựng sống",
+    "ja": "脊柱起立筋",
+    "es": "Espina dorsal"
+  },
+  "traps": {
+    "en": "Traps",
+    "vi": "Cơ cầu vai",
+    "ja": "僧帽筋",
+    "es": "Trapecio"
+  },
+  "triceps": {
+    "en": "Triceps",
+    "vi": "Tam đầu",
+    "ja": "上腕三頭筋",
+    "es": "Tríceps"
+  },
+  "upper back": {
+    "en": "Upper Back",
+    "vi": "Lưng trên",
+    "ja": "上背部",
+    "es": "Espalda alta"
+  },
+  "assisted": {
+    "en": "Assisted",
+    "vi": "Có trợ lực",
+    "ja": "アシスト",
+    "es": "Asistido"
+  },
+  "band": {
+    "en": "Band",
+    "vi": "Dây đàn hồi",
+    "ja": "バンド",
+    "es": "Banda"
+  },
+  "barbell": {
+    "en": "Barbell",
+    "vi": "Tạ đòn",
+    "ja": "バーベル",
+    "es": "Barra"
+  },
+  "body weight": {
+    "en": "Body Weight",
+    "vi": "Trọng lượng cơ thể",
+    "ja": "自重",
+    "es": "Peso corporal"
+  },
+  "bosu ball": {
+    "en": "Bosu Ball",
+    "vi": "Bóng thăng bằng",
+    "ja": "ボスボール",
+    "es": "Bosu"
+  },
+  "cable": {
+    "en": "Cable",
+    "vi": "Dây cáp",
+    "ja": "ケーブル",
+    "es": "Polea"
+  },
+  "dumbbell": {
+    "en": "Dumbbell",
+    "vi": "Tạ đơn",
+    "ja": "ダンベル",
+    "es": "Mancuerna"
+  },
+  "elliptical machine": {
+    "en": "Elliptical Machine",
+    "vi": "Máy elip",
+    "ja": "クロストレーナー",
+    "es": "Elíptica"
+  },
+  "ez barbell": {
+    "en": "EZ Barbell",
+    "vi": "Tạ đòn cong",
+    "ja": "EZバー",
+    "es": "Barra EZ"
+  },
+  "hammer": {
+    "en": "Hammer",
+    "vi": "Búa tạ",
+    "ja": "ハンマー",
+    "es": "Martillo"
+  },
+  "kettlebell": {
+    "en": "Kettlebell",
+    "vi": "Tạ ấm",
+    "ja": "ケトルベル",
+    "es": "Pesa rusa"
+  },
+  "leverage machine": {
+    "en": "Leverage Machine",
+    "vi": "Máy đòn bẩy",
+    "ja": "レバレッジマシン",
+    "es": "Máquina de palanca"
+  },
+  "medicine ball": {
+    "en": "Medicine Ball",
+    "vi": "Bóng tạ",
+    "ja": "メディシンボール",
+    "es": "Balón medicinal"
+  },
+  "olympic barbell": {
+    "en": "Olympic Barbell",
+    "vi": "Tạ đòn Olympic",
+    "ja": "オリンピックバー",
+    "es": "Barra olímpica"
+  },
+  "resistance band": {
+    "en": "Resistance Band",
+    "vi": "Dây kháng lực",
+    "ja": "レジスタンスバンド",
+    "es": "Banda elástica"
+  },
+  "roller": {
+    "en": "Roller",
+    "vi": "Con lăn",
+    "ja": "ローラー",
+    "es": "Rodillo"
+  },
+  "rope": {
+    "en": "Rope",
+    "vi": "Dây thừng",
+    "ja": "ロープ",
+    "es": "Cuerda"
+  },
+  "skierg machine": {
+    "en": "SkiErg Machine",
+    "vi": "Máy trượt tuyết",
+    "ja": "スキーエルグ",
+    "es": "SkiErg"
+  },
+  "sled machine": {
+    "en": "Sled Machine",
+    "vi": "Máy đẩy tạ",
+    "ja": "スレッドマシン",
+    "es": "Trineo"
+  },
+  "smith machine": {
+    "en": "Smith Machine",
+    "vi": "Khung Smith",
+    "ja": "スミスマシン",
+    "es": "Máquina Smith"
+  },
+  "stability ball": {
+    "en": "Stability Ball",
+    "vi": "Bóng tập",
+    "ja": "バランスボール",
+    "es": "Pelota de estabilidad"
+  },
+  "stationary bike": {
+    "en": "Stationary Bike",
+    "vi": "Xe đạp tập",
+    "ja": "エアロバイク",
+    "es": "Bicicleta estática"
+  },
+  "stepmill machine": {
+    "en": "Stepmill Machine",
+    "vi": "Máy leo bậc",
+    "ja": "ステップマシン",
+    "es": "Escaladora"
+  },
+  "tire": {
+    "en": "Tire",
+    "vi": "Lốp xe",
+    "ja": "タイヤ",
+    "es": "Neumático"
+  },
+  "trap bar": {
+    "en": "Trap Bar",
+    "vi": "Tạ đòn lục giác",
+    "ja": "トラップバー",
+    "es": "Barra hexagonal"
+  },
+  "upper body ergometer": {
+    "en": "Upper Body Ergometer",
+    "vi": "Máy quay tay",
+    "ja": "アームエルゴメーター",
+    "es": "Ergómetro superior"
+  },
+  "weighted": {
+    "en": "Weighted",
+    "vi": "Có thêm tạ",
+    "ja": "加重",
+    "es": "Con peso"
+  },
+  "wheel roller": {
+    "en": "Wheel Roller",
+    "vi": "Con lăn bụng",
+    "ja": "腹筋ローラー",
+    "es": "Rueda abdominal"
+  },
+  "abdominals": {
+    "en": "Abdominals",
+    "vi": "Cơ bụng",
+    "ja": "腹筋",
+    "es": "Abdominales"
+  },
+  "ankle stabilizers": {
+    "en": "Ankle Stabilizers",
+    "vi": "Cơ ổn định cổ chân",
+    "ja": "足首安定筋",
+    "es": "Estabilizadores de tobillo"
+  },
+  "ankles": {
+    "en": "Ankles",
+    "vi": "Cổ chân",
+    "ja": "足首",
+    "es": "Tobillos"
+  },
+  "core": {
+    "en": "Core",
+    "vi": "Cơ lõi",
+    "ja": "体幹",
+    "es": "Core"
+  },
+  "deltoids": {
+    "en": "Deltoids",
+    "vi": "Cơ vai",
+    "ja": "三角筋",
+    "es": "Deltoides"
+  },
+  "hands": {
+    "en": "Hands",
+    "vi": "Bàn tay",
+    "ja": "手",
+    "es": "Manos"
+  },
+  "hip flexors": {
+    "en": "Hip Flexors",
+    "vi": "Cơ gập hông",
+    "ja": "腸腰筋",
+    "es": "Flexores de cadera"
+  },
+  "latissimus dorsi": {
+    "en": "Latissimus Dorsi",
+    "vi": "Cơ lưng rộng",
+    "ja": "広背筋",
+    "es": "Dorsal ancho"
+  },
+  "lower back": {
+    "en": "Lower Back",
+    "vi": "Lưng dưới",
+    "ja": "腰部",
+    "es": "Espalda baja"
+  },
+  "obliques": {
+    "en": "Obliques",
+    "vi": "Cơ liên sườn",
+    "ja": "腹斜筋",
+    "es": "Oblicuos"
+  },
+  "quadriceps": {
+    "en": "Quadriceps",
+    "vi": "Cơ tứ đầu đùi",
+    "ja": "大腿四頭筋",
+    "es": "Cuádriceps"
+  },
+  "rhomboids": {
+    "en": "Rhomboids",
+    "vi": "Cơ thoi",
+    "ja": "菱形筋",
+    "es": "Romboides"
+  },
+  "rotator cuff": {
+    "en": "Rotator Cuff",
+    "vi": "Cơ xoay vai",
+    "ja": "回旋筋腱板",
+    "es": "Manguito rotador"
+  },
+  "soleus": {
+    "en": "Soleus",
+    "vi": "Cơ dép",
+    "ja": "ヒラメ筋",
+    "es": "Sóleo"
+  },
+  "trapezius": {
+    "en": "Trapezius",
+    "vi": "Cơ thang",
+    "ja": "僧帽筋",
+    "es": "Trapecio"
+  },
+  "wrist extensors": {
+    "en": "Wrist Extensors",
+    "vi": "Cơ duỗi cổ tay",
+    "ja": "手首伸筋",
+    "es": "Extensores de muñeca"
+  },
+  "wrist flexors": {
+    "en": "Wrist Flexors",
+    "vi": "Cơ gập cổ tay",
+    "ja": "手首屈筋",
+    "es": "Flexores de muñeca"
+  },
+  "wrists": {
+    "en": "Wrists",
+    "vi": "Cổ tay",
+    "ja": "手首",
+    "es": "Muñecas"
+  },
+  "brachialis": {
+    "en": "Brachialis",
+    "vi": "Cơ cánh tay",
+    "ja": "上腕筋",
+    "es": "Braquial"
+  },
+  "feet": {
+    "en": "Feet",
+    "vi": "Bàn chân",
+    "ja": "足",
+    "es": "Pies"
+  },
+  "grip muscles": {
+    "en": "Grip Muscles",
+    "vi": "Cơ lực nắm",
+    "ja": "握力筋",
+    "es": "Músculos de agarre"
+  },
+  "groin": {
+    "en": "Groin",
+    "vi": "Cơ bẹn",
+    "ja": "鼠径部",
+    "es": "Ingle"
+  },
+  "inner thighs": {
+    "en": "Inner Thighs",
+    "vi": "Đùi trong",
+    "ja": "内もも",
+    "es": "Muslos internos"
+  },
+  "lower abs": {
+    "en": "Lower Abs",
+    "vi": "Bụng dưới",
+    "ja": "下腹部",
+    "es": "Abdominales inferiores"
+  },
+  "rear deltoids": {
+    "en": "Rear Deltoids",
+    "vi": "Vai sau",
+    "ja": "三角筋後部",
+    "es": "Deltoides posteriores"
+  },
+  "shins": {
+    "en": "Shins",
+    "vi": "Cẳng chân trước",
+    "ja": "すね",
+    "es": "Espinillas"
+  },
+  "sternocleidomastoid": {
+    "en": "Sternocleidomastoid",
+    "vi": "Cơ ức đòn chũm",
+    "ja": "胸鎖乳突筋",
+    "es": "Esternocleidomastoideo"
+  },
+  "upper chest": {
+    "en": "Upper Chest",
+    "vi": "Ngực trên",
+    "ja": "大胸筋上部",
+    "es": "Pecho superior"
+  },
+  "Sleep": {
+    "en": "Sleep",
+    "vi": "Giấc ngủ",
+    "ja": "睡眠",
+    "es": "Sueño"
+  },
+  "Meals": {
+    "en": "Meals",
+    "vi": "Bữa ăn",
+    "ja": "食事",
+    "es": "Comidas"
+  },
+  "Nutrition": {
+    "en": "Nutrition",
+    "vi": "Dinh dưỡng",
+    "ja": "栄養",
+    "es": "Nutrición"
+  },
+  "Calorie Balance": {
+    "en": "Calorie Balance",
+    "vi": "Cân bằng calo",
+    "ja": "カロリー収支",
+    "es": "Balance calórico"
+  },
+  "Hydration": {
+    "en": "Hydration",
+    "vi": "Lượng nước",
+    "ja": "水分補給",
+    "es": "Hidratación"
+  },
+  "Body Weight": {
+    "en": "Body Weight",
+    "vi": "Cân nặng",
+    "ja": "体重",
+    "es": "Peso corporal"
+  },
+  "Personal Goals": {
+    "en": "Personal Goals",
+    "vi": "Mục tiêu cá nhân",
+    "ja": "個人目標",
+    "es": "Objetivos"
+  },
+  "Log Sleep": {
+    "en": "Log Sleep",
+    "vi": "Ghi giấc ngủ",
+    "ja": "睡眠を記録",
+    "es": "Registrar sueño"
+  },
+  "Bedtime": {
+    "en": "Bedtime",
+    "vi": "Giờ đi ngủ",
+    "ja": "就寝時刻",
+    "es": "Hora de dormir"
+  },
+  "Wake Time": {
+    "en": "Wake Time",
+    "vi": "Giờ thức dậy",
+    "ja": "起床時刻",
+    "es": "Hora de despertar"
+  },
+  "Sleep Duration": {
+    "en": "Sleep Duration",
+    "vi": "Thời gian ngủ",
+    "ja": "睡眠時間",
+    "es": "Duración del sueño"
+  },
+  "Sleep Quality": {
+    "en": "Sleep Quality",
+    "vi": "Chất lượng ngủ",
+    "ja": "睡眠の質",
+    "es": "Calidad del sueño"
+  },
+  "Sleep Target": {
+    "en": "Sleep Target",
+    "vi": "Mục tiêu ngủ",
+    "ja": "睡眠目標",
+    "es": "Meta de sueño"
+  },
+  "hours": {
+    "en": "hours",
+    "vi": "giờ",
+    "ja": "時間",
+    "es": "horas"
+  },
+  "h": {
+    "en": "h",
+    "vi": "g",
+    "ja": "時間",
+    "es": "h"
+  },
+  "Breakfast": {
+    "en": "Breakfast",
+    "vi": "Bữa sáng",
+    "ja": "朝食",
+    "es": "Desayuno"
+  },
+  "Lunch": {
+    "en": "Lunch",
+    "vi": "Bữa trưa",
+    "ja": "昼食",
+    "es": "Almuerzo"
+  },
+  "Dinner": {
+    "en": "Dinner",
+    "vi": "Bữa tối",
+    "ja": "夕食",
+    "es": "Cena"
+  },
+  "Snack": {
+    "en": "Snack",
+    "vi": "Bữa phụ",
+    "ja": "間食",
+    "es": "Merienda"
+  },
+  "Add Meal": {
+    "en": "Add Meal",
+    "vi": "Thêm bữa ăn",
+    "ja": "食事を追加",
+    "es": "Añadir comida"
+  },
+  "Meal Name": {
+    "en": "Meal Name",
+    "vi": "Tên món ăn",
+    "ja": "食事名",
+    "es": "Nombre"
+  },
+  "Calories": {
+    "en": "Calories",
+    "vi": "Calo",
+    "ja": "カロリー",
+    "es": "Calorías"
+  },
+  "kcal": {
+    "en": "kcal",
+    "vi": "kcal",
+    "ja": "kcal",
+    "es": "kcal"
+  },
+  "Protein": {
+    "en": "Protein",
+    "vi": "Đạm",
+    "ja": "タンパク質",
+    "es": "Proteína"
+  },
+  "Carbs": {
+    "en": "Carbs",
+    "vi": "Tinh bột",
+    "ja": "炭水化物",
+    "es": "Carbohidratos"
+  },
+  "Fat": {
+    "en": "Fat",
+    "vi": "Chất béo",
+    "ja": "脂質",
+    "es": "Grasas"
+  },
+  "Macros": {
+    "en": "Macros",
+    "vi": "Dinh dưỡng đa lượng",
+    "ja": "マクロ栄養素",
+    "es": "Macros"
+  },
+  "Favorites": {
+    "en": "Favorites",
+    "vi": "Yêu thích",
+    "ja": "お気に入り",
+    "es": "Favoritos"
+  },
+  "Recent": {
+    "en": "Recent",
+    "vi": "Gần đây",
+    "ja": "最近",
+    "es": "Recientes"
+  },
+  "g": {
+    "en": "g",
+    "vi": "g",
+    "ja": "g",
+    "es": "g"
+  },
+  "Calories In": {
+    "en": "Calories In",
+    "vi": "Calo nạp vào",
+    "ja": "摂取カロリー",
+    "es": "Calorías ingeridas"
+  },
+  "Calories Out": {
+    "en": "Calories Out",
+    "vi": "Calo tiêu hao",
+    "ja": "消費カロリー",
+    "es": "Calorías quemadas"
+  },
+  "Net Balance": {
+    "en": "Net Balance",
+    "vi": "Cân bằng ròng",
+    "ja": "収支バランス",
+    "es": "Balance neto"
+  },
+  "BMR": {
+    "en": "BMR",
+    "vi": "BMR",
+    "ja": "基礎代謝",
+    "es": "TMB"
+  },
+  "TDEE": {
+    "en": "TDEE",
+    "vi": "TDEE",
+    "ja": "総消費カロリー",
+    "es": "GET"
+  },
+  "Step Burn": {
+    "en": "Step Burn",
+    "vi": "Calo bước chân",
+    "ja": "歩行消費",
+    "es": "Quema por pasos"
+  },
+  "Workout Burn": {
+    "en": "Workout Burn",
+    "vi": "Calo tập luyện",
+    "ja": "運動消費",
+    "es": "Quema por entreno"
+  },
+  "Deficit": {
+    "en": "Deficit",
+    "vi": "Thâm hụt",
+    "ja": "不足",
+    "es": "Déficit"
+  },
+  "Maintenance": {
+    "en": "Maintenance",
+    "vi": "Duy trì",
+    "ja": "維持",
+    "es": "Mantenimiento"
+  },
+  "Surplus": {
+    "en": "Surplus",
+    "vi": "Dư thừa",
+    "ja": "余剰",
+    "es": "Superávit"
+  },
+  "Log Water": {
+    "en": "Log Water",
+    "vi": "Thêm nước",
+    "ja": "水分を記録",
+    "es": "Registrar agua"
+  },
+  "Water Intake": {
+    "en": "Water Intake",
+    "vi": "Nước đã uống",
+    "ja": "水分摂取量",
+    "es": "Consumo de agua"
+  },
+  "Hydration Target": {
+    "en": "Hydration Target",
+    "vi": "Mục tiêu nước",
+    "ja": "水分目標",
+    "es": "Meta de hidratación"
+  },
+  "ml": {
+    "en": "ml",
+    "vi": "ml",
+    "ja": "ml",
+    "es": "ml"
+  },
+  "Log Weight": {
+    "en": "Log Weight",
+    "vi": "Ghi cân nặng",
+    "ja": "体重を記録",
+    "es": "Registrar peso"
+  },
+  "Current Weight": {
+    "en": "Current Weight",
+    "vi": "Cân nặng hiện tại",
+    "ja": "現在の体重",
+    "es": "Peso actual"
+  },
+  "Target Weight": {
+    "en": "Target Weight",
+    "vi": "Cân nặng mục tiêu",
+    "ja": "目標体重",
+    "es": "Peso objetivo"
+  },
+  "Height": {
+    "en": "Height",
+    "vi": "Chiều cao",
+    "ja": "身長",
+    "es": "Altura"
+  },
+  "Age": {
+    "en": "Age",
+    "vi": "Tuổi",
+    "ja": "年齢",
+    "es": "Edad"
+  },
+  "Sex": {
+    "en": "Sex",
+    "vi": "Giới tính",
+    "ja": "性別",
+    "es": "Sexo"
+  },
+  "Male": {
+    "en": "Male",
+    "vi": "Nam",
+    "ja": "男性",
+    "es": "Masculino"
+  },
+  "Female": {
+    "en": "Female",
+    "vi": "Nữ",
+    "ja": "女性",
+    "es": "Femenino"
+  },
+  "Activity Level": {
+    "en": "Activity Level",
+    "vi": "Mức vận động",
+    "ja": "活動レベル",
+    "es": "Nivel de actividad"
+  },
+  "Sedentary": {
+    "en": "Sedentary",
+    "vi": "Ít vận động",
+    "ja": "低い",
+    "es": "Sedentario"
+  },
+  "Lightly Active": {
+    "en": "Lightly Active",
+    "vi": "Vận động nhẹ",
+    "ja": "やや低い",
+    "es": "Actividad ligera"
+  },
+  "Moderate": {
+    "en": "Moderate",
+    "vi": "Vừa phải",
+    "ja": "普通",
+    "es": "Moderado"
+  },
+  "Active": {
+    "en": "Active",
+    "vi": "Năng động",
+    "ja": "高い",
+    "es": "Activo"
+  },
+  "Very Active": {
+    "en": "Very Active",
+    "vi": "Rất năng động",
+    "ja": "非常に高い",
+    "es": "Muy activo"
+  },
+  "cm": {
+    "en": "cm",
+    "vi": "cm",
+    "ja": "cm",
+    "es": "cm"
+  },
+  "Weekly Workouts": {
+    "en": "Weekly Workouts",
+    "vi": "Buổi tập mỗi tuần",
+    "ja": "週間目標回数",
+    "es": "Entrenos semanales"
+  },
+  "Daily Steps": {
+    "en": "Daily Steps",
+    "vi": "Bước mỗi ngày",
+    "ja": "1日の目標歩数",
+    "es": "Pasos diarios"
+  },
+  "Daily Calories": {
+    "en": "Daily Calories",
+    "vi": "Calo mỗi ngày",
+    "ja": "1日の目標カロリー",
+    "es": "Calorías diarias"
+  },
+  "Daily Hydration": {
+    "en": "Daily Hydration",
+    "vi": "Nước mỗi ngày",
+    "ja": "1日の目標水分量",
+    "es": "Hidratación diaria"
+  },
+  "Save Goals": {
+    "en": "Save Goals",
+    "vi": "Lưu mục tiêu",
+    "ja": "目標を保存",
+    "es": "Guardar objetivos"
+  },
+  "Completed": {
+    "en": "Completed",
+    "vi": "Đã hoàn thành",
+    "ja": "達成済み",
+    "es": "Completado"
+  },
+  "Add Goal": {
+    "en": "Add Goal",
+    "vi": "Thêm mục tiêu",
+    "ja": "目標を追加",
+    "es": "Añadir objetivo"
+  },
+  "Week": {
+    "en": "Week",
+    "vi": "Tuần",
+    "ja": "週",
+    "es": "Semana"
+  },
+  "Month": {
+    "en": "Month",
+    "vi": "Tháng",
+    "ja": "月",
+    "es": "Mes"
+  },
+  "Year": {
+    "en": "Year",
+    "vi": "Năm",
+    "ja": "年",
+    "es": "Año"
+  },
+  "Strength": {
+    "en": "Strength",
+    "vi": "Sức mạnh",
+    "ja": "筋力",
+    "es": "Fuerza"
+  },
+  "Goals": {
+    "en": "Goals",
+    "vi": "Mục tiêu",
+    "ja": "目標",
+    "es": "Objetivos"
+  },
+  "Previous period": {
+    "en": "Previous period",
+    "vi": "Kỳ trước",
+    "ja": "前の期間",
+    "es": "Período anterior"
+  },
+  "Next period": {
+    "en": "Next period",
+    "vi": "Kỳ sau",
+    "ja": "次の期間",
+    "es": "Período siguiente"
+  },
+  "Average": {
+    "en": "Average",
+    "vi": "Trung bình",
+    "ja": "平均",
+    "es": "Promedio"
+  },
+  "Total": {
+    "en": "Total",
+    "vi": "Tổng cộng",
+    "ja": "合計",
+    "es": "Total"
+  },
+  "Completion Rate": {
+    "en": "Completion Rate",
+    "vi": "Tỷ lệ hoàn thành",
+    "ja": "達成率",
+    "es": "Tasa de cumplimiento"
+  },
+  "Sessions": {
+    "en": "Sessions",
+    "vi": "Số buổi",
+    "ja": "セッション数",
+    "es": "Sesiones"
+  },
+  "Total Volume": {
+    "en": "Total Volume",
+    "vi": "Tổng khối lượng",
+    "ja": "総負荷量",
+    "es": "Volumen total"
+  },
+  "Best e1RM": {
+    "en": "Best e1RM",
+    "vi": "e1RM cao nhất",
+    "ja": "最高推定1RM",
+    "es": "Mejor 1RM"
+  },
+  "Consistency": {
+    "en": "Consistency",
+    "vi": "Độ đều đặn",
+    "ja": "継続率",
+    "es": "Constancia"
+  },
+  "Goal Days": {
+    "en": "Goal Days",
+    "vi": "Ngày đạt mốc",
+    "ja": "達成日数",
+    "es": "Días cumplidos"
+  },
+  "Goal days": {
+    "en": "Goal days",
+    "vi": "Ngày đạt mốc",
+    "ja": "達成日数",
+    "es": "Días cumplidos"
+  },
+  "Theme": {
+    "en": "Theme",
+    "vi": "Giao diện",
+    "ja": "テーマ",
+    "es": "Tema"
+  },
+  "Emerald": {
+    "en": "Emerald",
+    "vi": "Ngọc lục bảo",
+    "ja": "エメラルド",
+    "es": "Esmeralda"
+  },
+  "Obsidian": {
+    "en": "Obsidian",
+    "vi": "Hắc diện thạch",
+    "ja": "オブシディアン",
+    "es": "Obsidiana"
+  },
+  "Ocean": {
+    "en": "Ocean",
+    "vi": "Đại dương",
+    "ja": "オーシャン",
+    "es": "Océano"
+  },
+  "Crimson": {
+    "en": "Crimson",
+    "vi": "Đỏ thẫm",
+    "ja": "クリムゾン",
+    "es": "Carmesí"
+  },
+  "Appearance": {
+    "en": "Appearance",
+    "vi": "Chế độ hiển thị",
+    "ja": "外観モード",
+    "es": "Apariencia"
+  },
+  "System": {
+    "en": "System",
+    "vi": "Hệ thống",
+    "ja": "システム",
+    "es": "Sistema"
+  },
+  "Light": {
+    "en": "Light",
+    "vi": "Sáng",
+    "ja": "ライト",
+    "es": "Claro"
+  },
+  "Dark": {
+    "en": "Dark",
+    "vi": "Tối",
+    "ja": "ダーク",
+    "es": "Oscuro"
+  },
+  "Language": {
+    "en": "Language",
+    "vi": "Ngôn ngữ",
+    "ja": "言語",
+    "es": "Idioma"
+  },
+  "Body Profile": {
+    "en": "Body Profile",
+    "vi": "Hồ sơ cơ thể",
+    "ja": "身体プロフィール",
+    "es": "Perfil corporal"
+  },
+  "Data source": {
+    "en": "Data source",
+    "vi": "Nguồn dữ liệu",
+    "ja": "データソース",
+    "es": "Fuente de datos"
+  },
+  "Local Storage": {
+    "en": "Local Storage",
+    "vi": "Lưu trữ cục bộ",
+    "ja": "ローカル保存",
+    "es": "Almacenamiento local"
+  },
+  "Local only": {
+    "en": "Local only",
+    "vi": "Chỉ lưu trên máy",
+    "ja": "端末内保存のみ",
+    "es": "Solo local"
+  },
+  "Backup": {
+    "en": "Backup",
+    "vi": "Sao lưu",
+    "ja": "バックアップ",
+    "es": "Copia de seguridad"
+  },
+  "Export Backup": {
+    "en": "Export Backup",
+    "vi": "Xuất bản sao lưu",
+    "ja": "バックアップ書出",
+    "es": "Exportar copia"
+  },
+  "Import Backup": {
+    "en": "Import Backup",
+    "vi": "Nhập bản sao lưu",
+    "ja": "バックアップ読込",
+    "es": "Importar copia"
+  },
+  "Reset local data": {
+    "en": "Reset local data",
+    "vi": "Đặt lại dữ liệu",
+    "ja": "ローカルデータを初期化",
+    "es": "Restablecer datos"
+  },
+  "Reset local data?": {
+    "en": "Reset local data?",
+    "vi": "Đặt lại dữ liệu cục bộ?",
+    "ja": "ローカルデータを初期化しますか？",
+    "es": "¿Restablecer datos locales?"
+  },
+  "Open Settings": {
+    "en": "Open Settings",
+    "vi": "Mở Cài đặt",
+    "ja": "設定を開く",
+    "es": "Abrir Ajustes"
+  },
+  "Privacy": {
+    "en": "Privacy",
+    "vi": "Quyền riêng tư",
+    "ja": "プライバシー",
+    "es": "Privacidad"
+  },
+  "About": {
+    "en": "About",
+    "vi": "Thông tin",
+    "ja": "情報",
+    "es": "Acerca de"
+  },
+  "MIT License": {
+    "en": "MIT License",
+    "vi": "Giấy phép MIT",
+    "ja": "MITライセンス",
+    "es": "Licencia MIT"
+  },
+  "Open Source Licenses": {
+    "en": "Open Source Licenses",
+    "vi": "Giấy phép mã nguồn mở",
+    "ja": "オープンソースライセンス",
+    "es": "Licencias de código abierto"
+  },
+  "Saved days": {
+    "en": "Saved days",
+    "vi": "Ngày đã lưu",
+    "ja": "記録日数",
+    "es": "Días guardados"
+  },
+  "History": {
+    "en": "History",
+    "vi": "Lịch sử",
+    "ja": "履歴",
+    "es": "Historial"
+  },
+  "Save": {
+    "en": "Save",
+    "vi": "Lưu",
+    "ja": "保存",
+    "es": "Guardar"
+  },
+  "Cancel": {
+    "en": "Cancel",
+    "vi": "Hủy",
+    "ja": "キャンセル",
+    "es": "Cancelar"
+  },
+  "Delete": {
+    "en": "Delete",
+    "vi": "Xóa",
+    "ja": "削除",
+    "es": "Eliminar"
+  },
+  "Edit": {
+    "en": "Edit",
+    "vi": "Sửa",
+    "ja": "編集",
+    "es": "Editar"
+  },
+  "Done": {
+    "en": "Done",
+    "vi": "Xong",
+    "ja": "完了",
+    "es": "Listo"
+  },
+  "Close": {
+    "en": "Close",
+    "vi": "Đóng",
+    "ja": "閉じる",
+    "es": "Cerrar"
+  },
+  "Apply": {
+    "en": "Apply",
+    "vi": "Áp dụng",
+    "ja": "適用",
+    "es": "Aplicar"
+  },
+  "Confirm": {
+    "en": "Confirm",
+    "vi": "Xác nhận",
+    "ja": "確認",
+    "es": "Confirmar"
+  },
+  "Reset": {
+    "en": "Reset",
+    "vi": "Đặt lại",
+    "ja": "リセット",
+    "es": "Restablecer"
+  },
+  "Backup exported": {
+    "en": "Backup exported",
+    "vi": "Đã xuất sao lưu",
+    "ja": "バックアップを書き出しました",
+    "es": "Copia exportada"
+  },
+  "Backup imported": {
+    "en": "Backup imported",
+    "vi": "Đã nhập sao lưu",
+    "ja": "バックアップを読み込みました",
+    "es": "Copia importada"
+  },
+  "Invalid backup file": {
+    "en": "Invalid backup file",
+    "vi": "Tệp sao lưu không hợp lệ",
+    "ja": "無効なバックアップファイル",
+    "es": "Archivo de copia inválido"
+  },
+  "Unsupported backup version": {
+    "en": "Unsupported backup version",
+    "vi": "Phiên bản sao lưu không hỗ trợ",
+    "ja": "未対応のバックアップ形式",
+    "es": "Versión no compatible"
+  },
+  "History could not be opened. Saved data has not been replaced.": {
+    "en": "History could not be opened. Saved data has not been replaced.",
+    "vi": "Không thể mở lịch sử. Dữ liệu đã lưu được giữ nguyên.",
+    "ja": "履歴を開けません。保存データは保持されています。",
+    "es": "No se pudo abrir el historial. Los datos guardados se conservan."
+  },
+  "Could not save history. Please try again.": {
+    "en": "Could not save history. Please try again.",
+    "vi": "Không thể lưu lịch sử. Vui lòng thử lại.",
+    "ja": "履歴を保存できません。再試行してください。",
+    "es": "No se pudo guardar el historial. Inténtalo de nuevo."
+  },
+  "HealthKit is missing from this app's signing profile.": {
+    "en": "HealthKit is missing from this app's signing profile.",
+    "vi": "Hồ sơ ký chưa có quyền HealthKit.",
+    "ja": "署名プロファイルにHealthKitがありません。",
+    "es": "Falta HealthKit en el perfil de firma."
+  },
+  "Could not connect. Check access in Settings.": {
+    "en": "Could not connect. Check access in Settings.",
+    "vi": "Không thể kết nối. Kiểm tra quyền trong Cài đặt.",
+    "ja": "接続できません。設定で権限を確認してください。",
+    "es": "No se pudo conectar. Revisa los permisos en Ajustes."
+  },
+  "Could not update. Unlock device and retry.": {
+    "en": "Could not update. Unlock device and retry.",
+    "vi": "Không thể cập nhật. Mở khóa thiết bị và thử lại.",
+    "ja": "更新できません。ロックを解除して再試行してください。",
+    "es": "No se pudo actualizar. Desbloquea el dispositivo y reintenta."
+  },
+  "Connection check": {
+    "en": "Connection check",
+    "vi": "Kiểm tra kết nối",
+    "ja": "接続確認",
+    "es": "Comprobación de conexión"
+  },
+  "In signing profile": {
+    "en": "In signing profile",
+    "vi": "Có trong hồ sơ ký",
+    "ja": "署名プロファイルにあり",
+    "es": "En perfil de firma"
+  },
+  "Missing from signing profile": {
+    "en": "Missing from signing profile",
+    "vi": "Thiếu trong hồ sơ ký",
+    "ja": "署名プロファイルになし",
+    "es": "Falta en perfil de firma"
+  },
+  "Profile not readable": {
+    "en": "Profile not readable",
+    "vi": "Không đọc được hồ sơ ký",
+    "ja": "プロファイル読取不可",
+    "es": "Perfil ilegible"
+  },
+  "Included in app": {
+    "en": "Included in app",
+    "vi": "Có trong ứng dụng",
+    "ja": "アプリに含まれています",
+    "es": "Incluido en la app"
+  },
+  "Removed from app": {
+    "en": "Removed from app",
+    "vi": "Không có trong ứng dụng",
+    "ja": "アプリに含まれていません",
+    "es": "No incluido en la app"
+  },
+  "Accessible": {
+    "en": "Accessible",
+    "vi": "Truy cập được",
+    "ja": "アクセス可能",
+    "es": "Accesible"
+  },
+  "Unavailable": {
+    "en": "Unavailable",
+    "vi": "Không khả dụng",
+    "ja": "利用不可",
+    "es": "No disponible"
+  },
+  "Share diagnostics": {
+    "en": "Share diagnostics",
+    "vi": "Chia sẻ chẩn đoán",
+    "ja": "診断結果を共有",
+    "es": "Compartir diagnóstico"
+  },
+  "Daily activity reminder": {
+    "en": "Daily activity reminder",
+    "vi": "Nhắc nhở vận động hằng ngày",
+    "ja": "毎日の活動リマインダー",
+    "es": "Recordatorio diario de actividad"
+  },
+  "Step Track": {
+    "en": "Step Track",
+    "vi": "Step Track",
+    "ja": "Step Track",
+    "es": "Step Track"
+  },
+  "Target": {
+    "en": "Target",
+    "vi": "Mục tiêu",
+    "ja": "目標",
+    "es": "Objetivo"
+  },
+  "NEAT": {
+    "en": "NEAT",
+    "vi": "NEAT",
+    "ja": "NEAT",
+    "es": "NEAT"
+  },
+  "Signing Status": {
+    "en": "Signing Status",
+    "vi": "Trạng thái ký",
+    "ja": "署名ステータス",
+    "es": "Estado de firma"
+  },
+  "HealthKit": {
+    "en": "HealthKit",
+    "vi": "HealthKit",
+    "ja": "HealthKit",
+    "es": "HealthKit"
+  },
+  "Widget": {
+    "en": "Widget",
+    "vi": "Tiện ích",
+    "ja": "ウィジェット",
+    "es": "Widget"
+  },
+  "Shared Container": {
+    "en": "Shared Container",
+    "vi": "Vùng chứa dùng chung",
+    "ja": "共有コンテナ",
+    "es": "Contenedor compartido"
+  },
+  "Export failed": {
+    "en": "Export failed",
+    "vi": "Xuất sao lưu thất bại",
+    "ja": "書き出しに失敗しました",
+    "es": "Error al exportar"
+  },
+  "Import failed": {
+    "en": "Import failed",
+    "vi": "Nhập sao lưu thất bại",
+    "ja": "読み込みに失敗しました",
+    "es": "Error al importar"
+  },
+  "Reset complete": {
+    "en": "Reset complete",
+    "vi": "Đã đặt lại dữ liệu",
+    "ja": "リセットが完了しました",
+    "es": "Datos restablecidos"
+  },
+  "Summary": {
+    "en": "Summary",
+    "vi": "Tóm tắt",
+    "ja": "概要",
+    "es": "Resumen"
+  },
+  "Weight Trend": {
+    "en": "Weight Trend",
+    "vi": "Xu hướng cân nặng",
+    "ja": "体重の推移",
+    "es": "Tendencia de peso"
+  },
+  "Weight Progression": {
+    "en": "Weight Progression",
+    "vi": "Tiến trình mức tạ",
+    "ja": "重量の推移",
+    "es": "Progresión de peso"
+  },
+  "Goal Checklist": {
+    "en": "Goal Checklist",
+    "vi": "Danh sách mục tiêu",
+    "ja": "目標チェックリスト",
+    "es": "Lista de objetivos"
+  },
+  "Goal Title": {
+    "en": "Goal Title",
+    "vi": "Tên mục tiêu",
+    "ja": "目標名",
+    "es": "Título del objetivo"
+  },
+  "Quality": {
+    "en": "Quality",
+    "vi": "Chất lượng",
+    "ja": "質",
+    "es": "Calidad"
+  },
+  "No meals logged": {
+    "en": "No meals logged",
+    "vi": "Chưa ghi bữa ăn",
+    "ja": "食事の記録なし",
+    "es": "Sin comidas registradas"
+  },
+  "No sleep logged": {
+    "en": "No sleep logged",
+    "vi": "Chưa ghi giấc ngủ",
+    "ja": "睡眠の記録なし",
+    "es": "Sin sueño registrado"
+  },
+  "No weight logged": {
+    "en": "No weight logged",
+    "vi": "Chưa ghi cân nặng",
+    "ja": "体重の記録なし",
+    "es": "Sin peso registrado"
+  },
+  "Re-log": {
+    "en": "Re-log",
+    "vi": "Ghi lại",
+    "ja": "再記録",
+    "es": "Registrar de nuevo"
+  },
+  "Add": {
+    "en": "Add",
+    "vi": "Thêm",
+    "ja": "追加",
+    "es": "Añadir"
+  },
+  "Workouts": {
+    "en": "Workouts",
+    "vi": "Buổi tập",
+    "ja": "ワークアウト",
+    "es": "Entrenamientos"
+  },
+  "Weight": {
+    "en": "Weight",
+    "vi": "Cân nặng",
+    "ja": "体重",
+    "es": "Peso"
+  },
+  "Status": {
+    "en": "Status",
+    "vi": "Trạng thái",
+    "ja": "状態",
+    "es": "Estado"
+  },
+  "Fallback": {
+    "en": "Fallback",
+    "vi": "Dự phòng",
+    "ja": "フォールバック",
+    "es": "Alternativa"
+  },
+  "Clear": {
+    "en": "Clear",
+    "vi": "Xóa",
+    "ja": "消去",
+    "es": "Borrar"
+  },
+  "Select Exercise": {
+    "en": "Select Exercise",
+    "vi": "Chọn bài tập",
+    "ja": "種目を選択",
+    "es": "Seleccionar ejercicio"
+  },
+  "Could not save local data": {
+    "en": "Could not save local data",
+    "vi": "Không thể lưu dữ liệu cục bộ",
+    "ja": "ローカルデータを保存できませんでした",
+    "es": "No se pudieron guardar los datos locales"
+  },
+  "Could not read backup file": {
+    "en": "Could not read backup file",
+    "vi": "Không thể đọc tệp sao lưu",
+    "ja": "バックアップファイルを読み込めませんでした",
+    "es": "No se pudo leer el archivo de respaldo"
+  },
+  "Macro Targets": {
+    "en": "Macro Targets",
+    "vi": "Mục tiêu dưỡng chất",
+    "ja": "栄養目標",
+    "es": "Objetivos de macros"
+  },
+  "Undo": {
+    "en": "Undo",
+    "vi": "Hoàn tác",
+    "ja": "取り消す",
+    "es": "Deshacer"
+  },
+  "Pedometer": {
+    "en": "Pedometer",
+    "vi": "Cảm biến bước chân",
+    "ja": "歩数計",
+    "es": "Podómetro"
+  },
+  "Metric": {
+    "en": "Metric",
+    "vi": "Chỉ số",
+    "ja": "指標",
+    "es": "Métrica"
+  },
+  "No hydration logged": {
+    "en": "No hydration logged",
+    "vi": "Chưa ghi nước uống",
+    "ja": "水分記録なし",
+    "es": "Sin hidratación registrada"
+  },
+  "Over target": {
+    "en": "Over target",
+    "vi": "Vượt mục tiêu",
+    "ja": "目標超過",
+    "es": "Sobre el objetivo"
+  },
+  "On track": {
+    "en": "On track",
+    "vi": "Đạt tiến độ",
+    "ja": "順調",
+    "es": "En camino"
+  },
+  "%@ g": {
+    "en": "%@ g",
+    "vi": "%@ g",
+    "ja": "%@ g",
+    "es": "%@ g"
+  }
+}

@@ -1,9 +1,9 @@
 name: Build iPhone IPA
 on:
   push:
-    paths: ['StepTrack/**', 'project*.yml', 'scripts/**', '.github/workflows/build-ios.yml']
+    paths: ['StepTrack/**', 'Tests/**', 'project*.yml', 'scripts/**', '.github/workflows/build-ios.yml']
   pull_request:
-    paths: ['StepTrack/**', 'project*.yml', 'scripts/**', '.github/workflows/build-ios.yml']
+    paths: ['StepTrack/**', 'Tests/**', 'project*.yml', 'scripts/**', '.github/workflows/build-ios.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -20,6 +20,13 @@ jobs:
         flavor: [sideload]
     steps:
       - uses: actions/checkout@v4
+      - name: Verify R2 compliance and static E2E tests
+        if: matrix.flavor == 'sideload'
+        run: |
+          python3 -m venv /tmp/steptrack-venv
+          /tmp/steptrack-venv/bin/python -m pip install --quiet pyyaml
+          /tmp/steptrack-venv/bin/python scripts/verify-r2-compliance.py --strict
+          STEPTRACK_REQUIRE_FULL_R2=1 /tmp/steptrack-venv/bin/python -m unittest discover -s Tests/E2EStaticTests -p "test_*.py" -v
       - name: Install project generator
         run: brew install xcodegen
       - name: Generate Xcode project
@@ -31,7 +38,7 @@ jobs:
           else
             xcodegen generate --spec project-sideload.yml
           fi
-      - name: Test history, navigation and languages
+      - name: Run unit and UI tests
         if: matrix.flavor == 'sideload'
         run: |
           set -o pipefail
@@ -73,6 +80,9 @@ jobs:
         run: |
           mkdir -p build/package/Payload
           ditto build/device/Build/Products/Release-iphoneos/StepTrack.app build/package/Payload/StepTrack.app
+          for res in exercises.json human_body.obj human_body.mtl Translations.json; do
+            test -f "build/package/Payload/StepTrack.app/$res" || { echo "Missing bundled resource: $res"; exit 1; }
+          done
           # Preserve intended capabilities in an ad-hoc signature for re-signing tools.
           # This is NOT a device-installable signature or a provisioning profile.
           if [ "$FLAVOR" = health ]; then

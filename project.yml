@@ -3,7 +3,15 @@ options:
   bundleIdPrefix: com.personal.steptrack
   deploymentTarget:
     iOS: "17.0"
+  developmentLanguage: en
   createIntermediateGroups: true
+  fileTypes:
+    obj:
+      buildPhase: resources
+      file: true
+    mtl:
+      buildPhase: resources
+      file: true
 settings:
   base:
     SWIFT_VERSION: "5.0"
@@ -20,9 +28,23 @@ targets:
     platform: iOS
     sources:
       - StepTrack/App
-      - StepTrack/Shared
-      - StepTrack/Assets.xcassets
-      - StepTrack/Resources
+      - path: StepTrack/Core
+        excludes:
+          - "**/.gitkeep"
+      - path: StepTrack/Features
+        excludes:
+          - "**/.gitkeep"
+      - StepTrack/Resources/Assets.xcassets
+      - path: StepTrack/Resources/Datasets/exercises.json
+        type: file
+        buildPhase: resources
+      - path: StepTrack/Resources/Models3D/human_body.obj
+        type: file
+        buildPhase: resources
+      - path: StepTrack/Resources/Models3D/human_body.mtl
+        type: file
+        buildPhase: resources
+      - StepTrack/Resources/Localization
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID)
@@ -32,8 +54,8 @@ targets:
       properties:
         CFBundleDisplayName: Step Track
         AppGroupIdentifier: $(APP_GROUP_ID)
-        NSHealthShareUsageDescription: Step Track đọc số bước và quãng đường từ Sức khỏe để hiển thị hoạt động và widget của bạn. Dữ liệu chỉ được lưu trên thiết bị.
-        NSMotionUsageDescription: Step Track đọc bước chân từ cảm biến chuyển động của iPhone.
+        NSHealthShareUsageDescription: Step Track reads your steps and walking distance to show your activity and widgets. Data stays on your device.
+        NSMotionUsageDescription: Step Track reads steps and distance from your iPhone's motion sensor.
         UILaunchScreen: {}
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
     entitlements:
@@ -50,7 +72,21 @@ targets:
     platform: iOS
     sources:
       - StepTrack/Widget
-      - StepTrack/Shared
+      - path: StepTrack/Core/Models/ActivityModels.swift
+        type: file
+      - path: StepTrack/Core/Persistence/ActivityStorage.swift
+        type: file
+      - path: StepTrack/Core/Services/CapabilityService.swift
+        type: file
+      - path: StepTrack/Core/DesignSystem/SvgIcon.swift
+        type: file
+      - path: StepTrack/Core/DesignSystem/ThemeManager.swift
+        type: file
+      - StepTrack/Core/Localization
+      - path: StepTrack/Resources/Assets.xcassets
+        excludes:
+          - AppIcon.appiconset
+      - StepTrack/Resources/Localization
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).widget
@@ -70,17 +106,30 @@ targets:
   StepTrackTests:
     type: bundle.unit-test
     platform: iOS
-    sources: [StepTrack/Tests]
+    sources:
+      - Tests/UnitTests
     dependencies:
       - target: StepTrack
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).tests
+  StepsTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests/StepsTests
+    dependencies:
+      - target: StepTrack
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).stepstests
   StepTrackUITests:
     type: bundle.ui-testing
     platform: iOS
-    sources: [StepTrack/UITests]
+    sources:
+      - Tests/UITests
     dependencies:
       - target: StepTrack
     settings:
@@ -94,4 +143,4 @@ schemes:
       targets:
         StepTrack: all
     test:
-      targets: [StepTrackTests, StepTrackUITests]
+      targets: [StepTrackTests, StepsTests, StepTrackUITests]
